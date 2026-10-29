@@ -35,8 +35,8 @@ export function DocsLayout({
   const article = useRef<HTMLElement>(null);
   const { entries, active, select } = useToc(article, current);
   return (
-    <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_13rem]">
-      <div className="min-w-0">
+    <div className="xl:flex xl:gap-10">
+      <div className="min-w-0 flex-1">
         <article ref={article} className={cx('mx-auto', !wide && 'max-w-[44rem]')}>
           <header className="flex items-start justify-between gap-4">
             <div className="min-w-0">
@@ -51,11 +51,13 @@ export function DocsLayout({
         </article>
       </div>
 
-      <aside aria-label="On this page" className="hidden xl:block">
-        <div className="sticky top-20 max-h-[calc(100vh-6rem)] scrollbar-none overflow-y-auto">
-          <Outline entries={entries} active={active} onSelect={select} />
-        </div>
-      </aside>
+      {entries.length > 0 && (
+        <aside aria-label="On this page" className="hidden w-52 shrink-0 xl:block">
+          <div className="sticky top-20 max-h-[calc(100vh-6rem)] scrollbar-none overflow-y-auto">
+            <Outline entries={entries} active={active} onSelect={select} />
+          </div>
+        </aside>
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useState, type ComponentType } from 'react';
 import { CodeTabs } from '../code';
-import { Button } from '../ui';
+import { Button, cx } from '../ui';
+import { stageClass } from './shared';
 import {
   ActionRow,
   Choice,
@@ -73,7 +74,7 @@ export function Playground({
     <div className="flex flex-col gap-3">
       <div className="grid overflow-hidden rounded-panel border border-line bg-raised lg:grid-cols-[1fr_19rem]">
         <div className="flex min-w-0 flex-col">
-          <div className="stage-grid grid min-h-[22rem] flex-1 grid-cols-[minmax(0,1fr)] place-items-center p-6 sm:p-10">
+          <div className={cx(stageClass('min-h-[22rem]'), 'flex-1')}>
             <Preview key={round} values={values} />
           </div>
           {spec.note && (

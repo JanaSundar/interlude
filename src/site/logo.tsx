@@ -2,7 +2,7 @@
  * The Interlude mark, defined once: an "i" whose stem flows into a wave and
  * lands on a signal dot. Used by the wordmark and by build-icons.
  */
-const mark = {
+export const mark = {
   dot: { cx: 8, cy: 8, r: 8 },
   stem: 'M7 27.3V65.9',
   wave: 'M7 62.5C18.5 58.5 26.5 48.5 32.5 38.2C37.2 30.5 42.7 28 49.5 28C57.5 28 61.7 34 67.2 44.2C72.7 54.5 78.5 59.8 87.2 59.8C97.2 59.8 105.2 53 114.7 39.7',

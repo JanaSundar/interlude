@@ -55,7 +55,16 @@ export function useCanvas(width: number, height: number) {
     return { ctx, palette: readPalette(canvas) };
   }, [width, height]);
 
-  return { ref, begin };
+  /** Runs `draw` on a fresh frame; does nothing until the canvas has mounted. */
+  const paint = useCallback(
+    (draw: (ctx: CanvasRenderingContext2D, palette: Palette) => void) => {
+      const frame = begin();
+      if (frame) draw(frame.ctx, frame.palette);
+    },
+    [begin],
+  );
+
+  return { ref, begin, paint };
 }
 
 export function dot(ctx: CanvasRenderingContext2D, x: number, y: number, r: number) {

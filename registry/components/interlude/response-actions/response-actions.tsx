@@ -1,11 +1,13 @@
 import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
+import type { KeyboardEvent } from 'react';
 import { cx } from '../primitives/cx';
-import { Icon, type IconName } from '../primitives/icons';
+import type { IconName } from '../primitives/icons';
 import { LiveRegion } from '../primitives/live-region';
 import { Pressable } from '../primitives/pressable';
 import { fade } from '../primitives/motion';
+import { SwapIcon } from '../primitives/swap-icon';
 import { themeVars } from '../primitives/tokens';
+import { useCopy } from '../primitives/use-copy';
 import { AutoWidth } from '../primitives/auto-size';
 
 export type BuiltInAction = 'copy' | 'regenerate' | 'retry' | 'edit' | 'continue';
@@ -35,8 +37,6 @@ const builtIns: Record<BuiltInAction, { label: string; icon: IconName }> = {
 const toCustom = (a: BuiltInAction | CustomAction): CustomAction =>
   typeof a === 'string' ? { id: a, ...builtIns[a] } : a;
 
-type CopyState = 'idle' | 'copied' | 'failed';
-
 /** A toolbar for a finished response. Arrow keys move between actions. */
 export function ResponseActions({
   actions,
@@ -47,24 +47,10 @@ export function ResponseActions({
   className,
 }: ResponseActionsProps) {
   const items = actions.map(toCustom);
-  const [copy, setCopy] = useState<CopyState>('idle');
-  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
-  useEffect(() => () => clearTimeout(timer.current), []);
+  const { state: copy, copy: copyToClipboard } = useCopy();
 
   const run = async (id: string) => {
-    if (id === 'copy' && copyText !== undefined) {
-      // Report "Copied" only once the clipboard write has actually succeeded.
-      let next: CopyState = 'failed';
-      try {
-        await navigator.clipboard.writeText(copyText);
-        next = 'copied';
-      } catch {
-        // Clipboard can be blocked by permissions or an insecure context.
-      }
-      setCopy(next);
-      clearTimeout(timer.current);
-      timer.current = setTimeout(() => setCopy('idle'), 1800);
-    }
+    if (id === 'copy' && copyText !== undefined) await copyToClipboard(copyText);
     onAction?.(id);
   };
 
@@ -111,17 +97,7 @@ export function ResponseActions({
               isCopy && copy === 'copied' && 'text-(color:--il-success)',
             )}
           >
-            <AnimatePresence mode="popLayout" initial={false}>
-              <motion.span
-                key={icon}
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.5, opacity: 0 }}
-                transition={fade}
-              >
-                <Icon name={icon} />
-              </motion.span>
-            </AnimatePresence>
+            <SwapIcon name={icon} />
             {labels && (
               <AutoWidth>
                 <AnimatePresence mode="popLayout" initial={false}>

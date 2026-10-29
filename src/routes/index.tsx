@@ -7,11 +7,12 @@ import { SnakeLoader } from '@registry/components/interlude/snake/snake';
 import { SectionLabel } from '@/site/chrome';
 import { ComponentCard } from '@/site/component-card';
 import { findItem, items } from '@/site/items';
+import { GAME_COUNT, pageHead } from '@/site/meta';
 import { Specimen } from '@/site/specimen';
 import { InstallTabs } from '@/site/code';
 import { ButtonLink } from '@/site/ui';
 
-export const Route = createFileRoute('/')({ component: Home });
+export const Route = createFileRoute('/')({ head: () => pageHead({ path: '/' }), component: Home });
 
 const strip = [
   { name: 'dot matrix', node: <DotMatrixLoader status="loading" size={22} /> },
@@ -100,7 +101,7 @@ function Home() {
             </h2>
             <p className="mt-3 text-muted">
               {items.length} components for waiting, model status, agent activity, output and
-              decisions, plus ten loaders with a game inside.
+              decisions, plus {GAME_COUNT} loaders with a game inside.
             </p>
           </div>
           <ButtonLink to="/docs/components" variant="solid">

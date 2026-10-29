@@ -1,7 +1,7 @@
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence } from 'motion/react';
 import { useState, type ReactNode } from 'react';
 import { AutoHeight } from '@registry/components/interlude/primitives/auto-size';
-import { fade } from '@registry/components/interlude/primitives/motion';
+import { Fade } from '@registry/components/interlude/primitives/fade';
 import { CommandTabs, InstallTabs } from '../code';
 import type { Item } from '../items';
 import { addDependencyFor } from '../meta';
@@ -34,13 +34,7 @@ export function InstallSection({ item }: { item: Item }) {
       />
       <AutoHeight>
         <AnimatePresence mode="popLayout" initial={false}>
-          <motion.div
-            key={method}
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={fade}
-          >
+          <Fade key={method} lift>
             {method === 'cli' ? (
               <InstallTabs item={item.slug} />
             ) : (
@@ -67,7 +61,7 @@ export function InstallSection({ item }: { item: Item }) {
                 </Step>
               </ol>
             )}
-          </motion.div>
+          </Fade>
         </AnimatePresence>
       </AutoHeight>
     </div>

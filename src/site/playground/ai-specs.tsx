@@ -19,8 +19,9 @@ import {
   appearance,
   appearanceCode,
   appearanceDefaults,
+  labelControl,
   motionControl,
-  px,
+  sizeControl,
   snippet,
 } from './shared';
 
@@ -53,11 +54,11 @@ function ThinkingPreview({ values: v }: { values: Values }) {
 export const thinkingSpec: PlaygroundSpec = {
   controls: [
     { type: 'choice', key: 'state', label: 'state', options: thinkingStates },
-    { type: 'text', key: 'label', label: 'label', placeholder: 'default wording' },
+    labelControl('default wording'),
     { type: 'text', key: 'tool', label: 'tool' },
     { type: 'choice', key: 'variant', label: 'variant', options: ['minimal', 'detailed'] },
     { type: 'toggle', key: 'elapsed', label: 'pass startedAt' },
-    { type: 'range', key: 'size', label: 'size', min: 10, max: 32, step: 1, format: px },
+    sizeControl(10, 32),
     accentControl,
     motionControl,
   ],

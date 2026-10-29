@@ -2,6 +2,7 @@ import type { ComponentType } from 'react';
 import { catalog, type CatalogEntry } from '@registry/catalog';
 import { breakout, BreakoutLoader } from '@registry/components/interlude/breakout/breakout';
 import type { GameDefinition, InterludeProps } from '@registry/components/interlude/core/types';
+import { dinoRun, DinoRunLoader } from '@registry/components/interlude/dino-run/dino-run';
 import { DotMatrixLoader } from '@registry/components/interlude/dot-matrix-loader/dot-matrix-loader';
 import {
   fallingBlocks,
@@ -53,6 +54,7 @@ const games: Record<string, { definition: GameDefinition; Loader: ComponentType<
     'whack-a-mole': { definition: whackAMole, Loader: WhackAMoleLoader },
     'space-shooter': { definition: spaceShooter, Loader: SpaceShooterLoader },
     'sliding-puzzle': { definition: slidingPuzzle, Loader: SlidingPuzzleLoader },
+    'dino-run': { definition: dinoRun, Loader: DinoRunLoader },
     'reaction-test': { definition: reactionTest, Loader: ReactionTestLoader },
   };
 

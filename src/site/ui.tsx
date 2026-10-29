@@ -1,9 +1,10 @@
 import { Link, type LinkProps } from '@tanstack/react-router';
-import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { motion } from 'motion/react';
+import { useId, type ReactNode } from 'react';
 import { cx } from '@registry/components/interlude/primitives/cx';
-import { Icon } from '@registry/components/interlude/primitives/icons';
-import { fade, softSpring, spring } from '@registry/components/interlude/primitives/motion';
+import { SwapIcon } from '@registry/components/interlude/primitives/swap-icon';
+import { useCopy } from '@registry/components/interlude/primitives/use-copy';
+import { softSpring, spring } from '@registry/components/interlude/primitives/motion';
 import {
   Pressable,
   type PressableProps,
@@ -71,54 +72,36 @@ export function ButtonLink({
 
 /** Copies only after the write succeeds; says so if it fails. */
 export function CopyButton({ text, label = 'Copy' }: { text: string; label?: string }) {
-  const [state, setState] = useState<'idle' | 'ok' | 'fail'>('idle');
-  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
-  useEffect(() => () => clearTimeout(timer.current), []);
-  const copy = async () => {
-    let next: 'ok' | 'fail' = 'fail';
-    try {
-      await navigator.clipboard.writeText(text);
-      next = 'ok';
-    } catch {
-      // Clipboard unavailable (permissions or insecure context).
-    }
-    setState(next);
-    clearTimeout(timer.current);
-    timer.current = setTimeout(() => setState('idle'), 1600);
-  };
+  const { state, copy } = useCopy(1600);
   return (
     <Pressable
-      onClick={copy}
+      onClick={() => copy(text)}
       dim={state === 'idle'}
       pressScale={0.88}
-      aria-label={state === 'ok' ? 'Copied' : state === 'fail' ? 'Copy failed' : label}
+      aria-label={state === 'copied' ? 'Copied' : state === 'failed' ? 'Copy failed' : label}
       className={cx(
         'grid size-7 shrink-0 place-items-center rounded-[7px]',
-        state === 'ok' && 'text-accent',
+        state === 'copied' && 'text-accent',
       )}
     >
-      <AnimatePresence mode="popLayout" initial={false}>
-        <motion.span
-          key={state}
-          initial={{ scale: 0.5, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.5, opacity: 0 }}
-          transition={fade}
-        >
-          <Icon name={state === 'ok' ? 'check' : state === 'fail' ? 'x' : 'copy'} />
-        </motion.span>
-      </AnimatePresence>
+      <SwapIcon name={state === 'copied' ? 'check' : state === 'failed' ? 'x' : 'copy'} />
     </Pressable>
   );
 }
 
-/** A segmented control whose selection pill glides between options. */
+/**
+ * A segmented control whose selection pill glides between options. The
+ * default is a bordered row of mono labels; `fill` is the equal-width, raised
+ * thumb style used for form-like controls (in `columns` columns).
+ */
 export function Segmented<T extends string>({
   options,
   value,
   onChange,
   label,
   wrap = false,
+  fill = false,
+  columns,
   className,
 }: {
   options: readonly { value: T; label: ReactNode }[];
@@ -127,6 +110,8 @@ export function Segmented<T extends string>({
   label: string;
   /** Let options flow onto several lines instead of scrolling. */
   wrap?: boolean;
+  fill?: boolean;
+  columns?: number;
   className?: string;
 }) {
   const pill = useId();
@@ -135,10 +120,17 @@ export function Segmented<T extends string>({
       role="group"
       aria-label={label}
       className={cx(
-        'inline-flex max-w-full gap-0.5 rounded-[9px] border border-line p-0.5',
-        wrap ? 'flex-wrap' : 'overflow-x-auto [scrollbar-width:none]',
+        fill
+          ? 'grid gap-0.5 rounded-[9px] bg-fg/[0.06] p-0.5'
+          : cx(
+              'inline-flex max-w-full gap-0.5 rounded-[9px] border border-line p-0.5',
+              wrap ? 'flex-wrap' : 'overflow-x-auto [scrollbar-width:none]',
+            ),
         className,
       )}
+      style={
+        fill && columns ? { gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` } : undefined
+      }
     >
       {options.map((o) => {
         const on = o.value === value;
@@ -148,20 +140,28 @@ export function Segmented<T extends string>({
             type="button"
             aria-pressed={on}
             onClick={() => onChange(o.value)}
-            className="relative h-7 shrink-0 rounded-[7px] px-2.5 font-mono text-[11px] outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className={cx(
+              'relative h-7 rounded-[7px] outline-none focus-visible:ring-2 focus-visible:ring-accent',
+              fill ? 'min-w-0 px-1.5 text-[12px]' : 'shrink-0 px-2.5 font-mono text-[11px]',
+            )}
           >
             {on && (
               <motion.span
                 layoutId={pill}
                 transition={softSpring}
-                className="absolute inset-0 rounded-[7px] bg-fg/[0.09]"
+                className={cx(
+                  'absolute inset-0 rounded-[7px]',
+                  fill
+                    ? 'bg-raised shadow-[0_1px_2px_rgb(0_0_0/0.18),0_0_0_0.5px_rgb(0_0_0/0.06)] dark:bg-fg/[0.14]'
+                    : 'bg-fg/[0.09]',
+                )}
               />
             )}
             <motion.span
-              className="relative"
+              className={cx('relative', fill && 'block truncate')}
               initial={false}
-              animate={{ opacity: on ? 1 : 0.5 }}
-              whileHover={{ opacity: on ? 1 : 0.8 }}
+              animate={{ opacity: on ? 1 : fill ? 0.55 : 0.5 }}
+              whileHover={{ opacity: on ? 1 : fill ? 0.85 : 0.8 }}
               transition={spring}
             >
               {o.label}

@@ -1,7 +1,8 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { dot, roundRect, useCanvas } from '../core/canvas';
 import { Board, Bursts, GameOverlay, ScoreLivesHud, useBursts } from '../core/game-ui';
 import { createLoader } from '../core/interlude';
+import { useHudState } from '../core/use-hud-state';
 import { axis, useHeldKeys, usePointerTarget } from '../core/input';
 import type { GameDefinition, GameProps } from '../core/types';
 import { useGameLoop } from '../core/use-game-loop';
@@ -27,8 +28,8 @@ export function BreakoutGame(props: GameProps) {
   const { paused, speed, reducedMotion } = props;
   const state = useRef(createBreakout());
   const launch = useRef(false);
-  const [hud, setHud] = useState({ score: 0, lives: 3, over: false, won: false, stuck: true });
-  const { ref, begin } = useCanvas(W, H);
+  const [hud, setHud] = useHudState({ score: 0, lives: 3, over: false, won: false, stuck: true });
+  const { ref, paint } = useCanvas(W, H);
   const bursts = useBursts();
   const pointer = usePointerTarget(W, H);
 
@@ -59,32 +60,23 @@ export function BreakoutGame(props: GameProps) {
         state.current = result.state;
         for (const h of result.hits) bursts.add(h.x, h.y);
         const s = result.state;
-        setHud((prev) =>
-          prev.score === s.score &&
-          prev.lives === s.lives &&
-          prev.over === s.over &&
-          prev.stuck === s.stuck
-            ? prev
-            : { score: s.score, lives: s.lives, over: s.over, won: s.won, stuck: s.stuck },
-        );
+        setHud({ score: s.score, lives: s.lives, over: s.over, won: s.won, stuck: s.stuck });
       },
-      render: () => {
-        const frame = begin();
-        if (!frame) return;
-        const { ctx, palette } = frame;
-        const s = state.current;
-        s.bricks.forEach((b, i) => {
-          if (!b.alive) return;
-          ctx.fillStyle = i < 16 ? palette.accent : palette.fg;
-          ctx.globalAlpha = i < 16 ? 1 - Math.floor(i / 8) * 0.3 : 0.45;
-          roundRect(ctx, b.x, b.y, BRICK_W, BRICK_H, 2);
-        });
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = palette.fg;
-        roundRect(ctx, s.paddle - PADDLE_W / 2, PADDLE_Y, PADDLE_W, PADDLE_H, 2);
-        ctx.fillStyle = palette.accent;
-        dot(ctx, s.ball.x, s.ball.y, BALL_R);
-      },
+      render: () =>
+        paint((ctx, palette) => {
+          const s = state.current;
+          s.bricks.forEach((b, i) => {
+            if (!b.alive) return;
+            ctx.fillStyle = i < 16 ? palette.accent : palette.fg;
+            ctx.globalAlpha = i < 16 ? 1 - Math.floor(i / 8) * 0.3 : 0.45;
+            roundRect(ctx, b.x, b.y, BRICK_W, BRICK_H, 2);
+          });
+          ctx.globalAlpha = 1;
+          ctx.fillStyle = palette.fg;
+          roundRect(ctx, s.paddle - PADDLE_W / 2, PADDLE_Y, PADDLE_W, PADDLE_H, 2);
+          ctx.fillStyle = palette.accent;
+          dot(ctx, s.ball.x, s.ball.y, BALL_R);
+        }),
     },
     1000 / 120,
     !paused && !hud.over,

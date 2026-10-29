@@ -3,7 +3,7 @@ import { CORE_ITEM, groups, PRIMITIVES_ITEM } from '@registry/catalog';
 import { HoverText } from '../chrome';
 import { CodeTabs, InstallTabs } from '../code';
 import { items } from '../items';
-import { REPO, REPO_URL } from '../meta';
+import { GAME_COUNT, REPO, REPO_URL } from '../meta';
 import { Callout, H2, H3, Prose, Terms } from './prose';
 
 export function Introduction() {
@@ -11,9 +11,9 @@ export function Introduction() {
     <Prose>
       <p>
         Interlude is a registry of React components for the moments between a request and its
-        result: honest loaders, ten that unfold into games, and AI components that show what an
-        agent actually did. You copy each one into your project as source; there is no runtime,
-        hosted service or telemetry.
+        result: honest loaders, {GAME_COUNT} that unfold into games, and AI components that show
+        what an agent actually did. You copy each one into your project as source; there is no
+        runtime, hosted service or telemetry.
       </p>
       <H2>What’s inside</H2>
       <p>
@@ -167,9 +167,9 @@ export function TaskLifecycle() {
       </p>
       <H2>Playable loaders</H2>
       <p>
-        The ten game loaders look like quiet dot matrices until clicked. The game is a guest: when
-        your task ends it stops immediately, input is disabled and focus moves to the result. Score
-        never feeds into task progress.
+        The {GAME_COUNT} game loaders look like quiet dot matrices until clicked. The game is a
+        guest: when your task ends it stops immediately, input is disabled and focus moves to the
+        result. Score never feeds into task progress.
       </p>
       <Callout>
         Progress is shown only when you pass a real number. Without one, the bar is honestly

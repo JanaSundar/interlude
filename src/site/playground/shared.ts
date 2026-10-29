@@ -42,6 +42,29 @@ export const asStatus = (v: Values) => v.status as TaskStatus;
 export const times = (v: number) => `${v}×`;
 export const px = (v: number) => `${v}px`;
 
+/** A free-text "label" prop; `placeholder` says what an empty value means. */
+export const labelControl = (placeholder?: string): Control => ({
+  type: 'text',
+  key: 'label',
+  label: 'label',
+  placeholder,
+});
+
+/** A pixel "size" prop. */
+export const sizeControl = (min: number, max: number): Control => ({
+  type: 'range',
+  key: 'size',
+  label: 'size',
+  min,
+  max,
+  step: 1,
+  format: px,
+});
+
+/** The dotted stage a live preview sits on; every preview box uses it. */
+export const stageClass = (minHeight: string) =>
+  `stage-grid grid ${minHeight} grid-cols-[minmax(0,1fr)] place-items-center p-6 sm:p-10`;
+
 /** Import line plus element, the way a snippet should read. */
 export const snippet = (importLine: string, element: string, setup?: string) =>
   [importLine, '', ...(setup ? [setup, ''] : []), element].join('\n');

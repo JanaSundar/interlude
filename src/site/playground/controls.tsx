@@ -3,7 +3,7 @@ import { useId, type ReactNode } from 'react';
 import { Icon } from '@registry/components/interlude/primitives/icons';
 import { softSpring, spring } from '@registry/components/interlude/primitives/motion';
 import { Pressable } from '@registry/components/interlude/primitives/pressable';
-import { cx } from '../ui';
+import { cx, Segmented } from '../ui';
 
 export { Slider } from './slider';
 
@@ -150,7 +150,7 @@ export function TextField({
   );
 }
 
-/** Equal-width segmented control with a raised thumb that glides, like UISegmentedControl. */
+/** Equal-width segmented control; long labels get wider cells rather than being truncated. */
 export function Choice({
   label,
   options,
@@ -162,47 +162,17 @@ export function Choice({
   value: string;
   onChange: (v: string) => void;
 }) {
-  const thumb = useId();
-  // Long labels get wider cells rather than being truncated.
   const longest = Math.max(...options.map((o) => o.length));
   const columns = options.length <= 3 ? options.length : longest > 8 ? 3 : 4;
   return (
-    <div
-      role="group"
-      aria-label={label}
-      className="grid gap-0.5 rounded-[9px] bg-fg/[0.06] p-0.5"
-      style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
-    >
-      {options.map((o) => {
-        const on = o === value;
-        return (
-          <button
-            key={o}
-            type="button"
-            aria-pressed={on}
-            onClick={() => onChange(o)}
-            className="relative h-7 min-w-0 rounded-[7px] px-1.5 text-[12px] outline-none focus-visible:ring-2 focus-visible:ring-accent"
-          >
-            {on && (
-              <motion.span
-                layoutId={thumb}
-                transition={softSpring}
-                className="absolute inset-0 rounded-[7px] bg-raised shadow-[0_1px_2px_rgb(0_0_0/0.18),0_0_0_0.5px_rgb(0_0_0/0.06)] dark:bg-fg/[0.14]"
-              />
-            )}
-            <motion.span
-              className="relative block truncate"
-              initial={false}
-              animate={{ opacity: on ? 1 : 0.55 }}
-              whileHover={{ opacity: on ? 1 : 0.85 }}
-              transition={spring}
-            >
-              {o}
-            </motion.span>
-          </button>
-        );
-      })}
-    </div>
+    <Segmented
+      fill
+      columns={columns}
+      label={label}
+      value={value}
+      onChange={onChange}
+      options={options.map((o) => ({ value: o, label: o }))}
+    />
   );
 }
 

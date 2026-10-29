@@ -31,6 +31,11 @@
           "target": "@components/interlude/primitives/dot-matrix.tsx"
         },
         {
+          "path": "registry/components/interlude/primitives/fade.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/fade.tsx"
+        },
+        {
           "path": "registry/components/interlude/primitives/icons.tsx",
           "type": "registry:component",
           "target": "@components/interlude/primitives/icons.tsx"
@@ -49,6 +54,11 @@
           "path": "registry/components/interlude/primitives/loop.ts",
           "type": "registry:component",
           "target": "@components/interlude/primitives/loop.ts"
+        },
+        {
+          "path": "registry/components/interlude/primitives/math.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/math.ts"
         },
         {
           "path": "registry/components/interlude/primitives/motion.ts",
@@ -86,6 +96,11 @@
           "target": "@components/interlude/primitives/status.ts"
         },
         {
+          "path": "registry/components/interlude/primitives/swap-icon.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/swap-icon.tsx"
+        },
+        {
           "path": "registry/components/interlude/primitives/task-result.tsx",
           "type": "registry:component",
           "target": "@components/interlude/primitives/task-result.tsx"
@@ -99,6 +114,11 @@
           "path": "registry/components/interlude/primitives/tokens.ts",
           "type": "registry:component",
           "target": "@components/interlude/primitives/tokens.ts"
+        },
+        {
+          "path": "registry/components/interlude/primitives/use-copy.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/use-copy.ts"
         },
         {
           "path": "registry/components/interlude/primitives/use-elapsed.ts",
@@ -169,6 +189,11 @@
           "path": "registry/components/interlude/core/use-game-status.ts",
           "type": "registry:component",
           "target": "@components/interlude/core/use-game-status.ts"
+        },
+        {
+          "path": "registry/components/interlude/core/use-hud-state.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/core/use-hud-state.ts"
         },
         {
           "path": "registry/components/interlude/core/use-interlude.ts",
@@ -690,6 +715,33 @@
       ],
       "categories": ["playable", "puzzle"],
       "docs": "import { SlidingPuzzleLoader } from '@/components/interlude/sliding-puzzle/sliding-puzzle';\n\n<SlidingPuzzleLoader active={isGenerating} label=\"Generating your response\" />"
+    },
+    {
+      "name": "dino-run",
+      "type": "registry:component",
+      "title": "Dino Run",
+      "description": "A dot runs the bottom row and hops each obstacle dot. Click it to discover what's inside.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-core"],
+      "files": [
+        {
+          "path": "registry/components/interlude/dino-run/dino-run.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/dino-run/dino-run.tsx"
+        },
+        {
+          "path": "registry/components/interlude/dino-run/logic.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/dino-run/logic.ts"
+        },
+        {
+          "path": "registry/components/interlude/dino-run/pattern.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/dino-run/pattern.ts"
+        }
+      ],
+      "categories": ["playable", "reflex"],
+      "docs": "import { DinoRunLoader } from '@/components/interlude/dino-run/dino-run';\n\n<DinoRunLoader active={isGenerating} label=\"Generating your response\" />"
     },
     {
       "name": "reaction-test",

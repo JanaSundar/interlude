@@ -149,6 +149,15 @@ const games: CatalogEntry[] = [
     game: 'The 8-puzzle, shuffled by random legal moves so every board is solvable.',
   }),
   game({
+    slug: 'dino-run',
+    name: 'Dino Run',
+    component: 'DinoRunLoader',
+    genre: 'reflex',
+    tagline: 'Jump the cacti',
+    description: 'A dot runs the bottom row and hops each obstacle dot.',
+    game: 'An endless runner in the spirit of the offline dino: one control, jump. Hold for a full hop, release early for a short one; the world speeds up the further you get.',
+  }),
+  game({
     slug: 'reaction-test',
     name: 'Reaction Test',
     component: 'ReactionTestLoader',

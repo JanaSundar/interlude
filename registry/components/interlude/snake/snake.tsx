@@ -52,7 +52,7 @@ export function SnakeGame(props: GameProps) {
   const [score, setScore] = useState(0);
   const [over, setOver] = useState(false);
   const best = useRef(0);
-  const { ref, begin } = useCanvas(W, H);
+  const { ref, paint } = useCanvas(W, H);
 
   const restart = () => {
     state.current = createSnake(rng.current);
@@ -84,33 +84,31 @@ export function SnakeGame(props: GameProps) {
         setScore(s.score);
         setOver(s.over);
       },
-      render: (alpha) => {
-        const frame = begin();
-        if (!frame) return;
-        const { ctx, palette } = frame;
-        const s = state.current;
-        dotField(ctx, COLS, ROWS, CELL, palette.fg);
-        ctx.fillStyle = palette.fg;
-        const pulse = 0.75 + 0.25 * Math.sin(performance.now() / 180);
-        dot(ctx, (s.food.x + 0.5) * CELL, (s.food.y + 0.5) * CELL, CELL * 0.3 * pulse);
-        ctx.fillStyle = palette.accent;
-        const t = s.over ? 1 : alpha;
-        s.snake.forEach((p, i) => {
-          const from = s.prev[i] ?? p;
-          // Interpolate along the short way round, so a wrap glides off one
-          // edge and in from the other instead of sweeping across the board.
-          const { x, y } = glide(from, p, t);
-          ctx.globalAlpha = s.over ? 0.35 : 1 - (i / s.snake.length) * 0.55;
-          // The body tapers from the head to the tail.
-          const r = CELL * (0.46 - 0.2 * (i / Math.max(1, s.snake.length - 1)));
-          for (const ox of [-COLS, 0, COLS]) {
-            for (const oy of [-ROWS, 0, ROWS])
-              dot(ctx, (x + ox + 0.5) * CELL, (y + oy + 0.5) * CELL, r);
-          }
-        });
-        ctx.globalAlpha = 1;
-        if (!s.over) eyes(ctx, s, t);
-      },
+      render: (alpha) =>
+        paint((ctx, palette) => {
+          const s = state.current;
+          dotField(ctx, COLS, ROWS, CELL, palette.fg);
+          ctx.fillStyle = palette.fg;
+          const pulse = 0.75 + 0.25 * Math.sin(performance.now() / 180);
+          dot(ctx, (s.food.x + 0.5) * CELL, (s.food.y + 0.5) * CELL, CELL * 0.3 * pulse);
+          ctx.fillStyle = palette.accent;
+          const t = s.over ? 1 : alpha;
+          s.snake.forEach((p, i) => {
+            const from = s.prev[i] ?? p;
+            // Interpolate along the short way round, so a wrap glides off one
+            // edge and in from the other instead of sweeping across the board.
+            const { x, y } = glide(from, p, t);
+            ctx.globalAlpha = s.over ? 0.35 : 1 - (i / s.snake.length) * 0.55;
+            // The body tapers from the head to the tail.
+            const r = CELL * (0.46 - 0.2 * (i / Math.max(1, s.snake.length - 1)));
+            for (const ox of [-COLS, 0, COLS]) {
+              for (const oy of [-ROWS, 0, ROWS])
+                dot(ctx, (x + ox + 0.5) * CELL, (y + oy + 0.5) * CELL, r);
+            }
+          });
+          ctx.globalAlpha = 1;
+          if (!s.over) eyes(ctx, s, t);
+        }),
     },
     stepInterval(score, speed),
     started && !paused && !over,

@@ -207,9 +207,6 @@
 @utility fade-x {
   mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
 }
-@utility {
-  mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
-}
 @utility dotted-t {
   &::before {
     content: '';

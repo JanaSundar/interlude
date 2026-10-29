@@ -18,6 +18,7 @@ export default defineConfig({
     : [
         tailwindcss(),
         tanstackStart({
+          pages: [{ path: '/sitemap.xml' }, { path: '/robots.txt' }],
           // Static site: crawl every internal link; in-page anchors are the same page.
           prerender: { enabled: true, crawlLinks: true, filter: ({ path }) => !path.includes('#') },
         }),

@@ -17,14 +17,14 @@ import {
   appearanceDefaults,
   asStatus,
   isStill,
+  labelControl,
   motionControl,
-  px,
+  sizeControl,
   snippet,
   statusControl,
   times,
 } from './shared';
 
-const labelControl: Control = { type: 'text', key: 'label', label: 'label', placeholder: 'none' };
 const speedControl: Control = {
   type: 'range',
   key: 'speed',
@@ -34,16 +34,6 @@ const speedControl: Control = {
   step: 0.25,
   format: times,
 };
-const sizeControl = (min: number, max: number): Control => ({
-  type: 'range',
-  key: 'size',
-  label: 'size',
-  min,
-  max,
-  step: 1,
-  format: px,
-});
-
 /** Common props for status loaders, as passed and as written. */
 const loaderProps = (v: Values) => ({
   status: asStatus(v),
@@ -73,7 +63,7 @@ export function statusLoaderSpec(
   return {
     controls: [
       statusControl,
-      labelControl,
+      labelControl('none'),
       sizeControl(size.min, size.max),
       speedControl,
       accentControl,
@@ -144,7 +134,7 @@ export const progressSpec: PlaygroundSpec = {
       format: (v) => `${Math.round(v * 100)}%`,
     },
     { type: 'toggle', key: 'showValue', label: 'showValue' },
-    labelControl,
+    labelControl('none'),
     sizeControl(80, 320),
     speedControl,
     accentControl,
@@ -192,7 +182,7 @@ export const skeletonSpec: PlaygroundSpec = {
     { type: 'toggle', key: 'loading', label: 'loading' },
     { type: 'range', key: 'lines', label: 'lines', min: 1, max: 6, step: 1 },
     { type: 'toggle', key: 'avatar', label: 'avatar' },
-    { type: 'text', key: 'label', label: 'label' },
+    labelControl(),
     motionControl,
   ],
   defaults: {
@@ -267,7 +257,7 @@ export function gameSpec(
   return {
     controls: [
       statusControl,
-      labelControl,
+      labelControl('none'),
       sizeControl(14, 40),
       speedControl,
       { type: 'toggle', key: 'hint', label: 'hint' },

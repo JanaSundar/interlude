@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useId, useRef, useSyncExternalStore, type KeyboardEvent } from 'react';
 import { AutoHeight } from '@registry/components/interlude/primitives/auto-size';
-import { fade, softSpring, spring } from '@registry/components/interlude/primitives/motion';
+import { Fade } from '@registry/components/interlude/primitives/fade';
+import { softSpring, spring } from '@registry/components/interlude/primitives/motion';
 import { toLines, tokenize, type Lang, type TokenKind } from './highlight';
 import { installCommandFor, packageManagers, type PackageManager } from './meta';
 import { CopyButton, cx } from './ui';
@@ -160,15 +161,12 @@ export function CodeTabs({
       </div>
       <AutoHeight>
         <AnimatePresence mode="popLayout" initial={false}>
-          <motion.div
+          <Fade
             key={tab.id}
+            lift
             id={`${uid}-panel`}
             role="tabpanel"
             aria-labelledby={`${uid}-tab-${tab.id}`}
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={fade}
           >
             <pre
               tabIndex={0}
@@ -211,7 +209,7 @@ export function CodeTabs({
                 ))}
               </code>
             </pre>
-          </motion.div>
+          </Fade>
         </AnimatePresence>
       </AutoHeight>
     </div>

@@ -30,7 +30,7 @@ export function PongGame(props: GameProps) {
   const state = useRef(createPong(rng.current));
   const [score, setScore] = useState(state.current.score);
   const [over, setOver] = useState(false);
-  const { ref, begin } = useCanvas(W, H);
+  const { ref, paint } = useCanvas(W, H);
   const bursts = useBursts();
   const pointer = usePointerTarget(W, H);
 
@@ -59,23 +59,21 @@ export function PongGame(props: GameProps) {
         setScore(result.state.score);
         setOver(result.state.over);
       },
-      render: () => {
-        const frame = begin();
-        if (!frame) return;
-        const { ctx, palette } = frame;
-        const s = state.current;
-        ctx.fillStyle = palette.fg;
-        ctx.globalAlpha = 0.15;
-        for (let y = 4; y < H; y += 8) dot(ctx, W / 2, y, 1);
-        ctx.globalAlpha = 0.5;
-        roundRect(ctx, AI_X, s.ai - PADDLE_H / 2, PADDLE_W, PADDLE_H, 2);
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = palette.accent;
-        roundRect(ctx, PLAYER_X, s.player - PADDLE_H / 2, PADDLE_W, PADDLE_H, 2);
-        if (s.serveIn <= 0 || Math.floor(s.serveIn / 120) % 2 === 0) {
-          dot(ctx, s.ball.x, s.ball.y, BALL_R);
-        }
-      },
+      render: () =>
+        paint((ctx, palette) => {
+          const s = state.current;
+          ctx.fillStyle = palette.fg;
+          ctx.globalAlpha = 0.15;
+          for (let y = 4; y < H; y += 8) dot(ctx, W / 2, y, 1);
+          ctx.globalAlpha = 0.5;
+          roundRect(ctx, AI_X, s.ai - PADDLE_H / 2, PADDLE_W, PADDLE_H, 2);
+          ctx.globalAlpha = 1;
+          ctx.fillStyle = palette.accent;
+          roundRect(ctx, PLAYER_X, s.player - PADDLE_H / 2, PADDLE_W, PADDLE_H, 2);
+          if (s.serveIn <= 0 || Math.floor(s.serveIn / 120) % 2 === 0) {
+            dot(ctx, s.ball.x, s.ball.y, BALL_R);
+          }
+        }),
     },
     1000 / 120,
     !paused && !over,

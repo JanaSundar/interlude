@@ -19,5 +19,5 @@
       "@registry/*": ["./registry/*"]
     }
   },
-  "include": ["src", "registry", "scripts", "e2e", "vite.config.ts", "playwright.config.ts"]
+  "include": ["src", "registry", "scripts", "vite.config.ts"]
 }

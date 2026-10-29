@@ -1,33 +1,58 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 import { Footer, Header, themeScript } from '@/site/chrome';
-import { ButtonLink } from '@/site/ui';
+import { REPO_URL, SITE_DESCRIPTION, SITE_NAME, SITE_URL, pageHead } from '@/site/meta';
+import { NotFound } from '@/site/not-found';
 import appCss from '../styles.css?url';
 
+/** Describes the site to search engines: a software project with a searchable docs site. */
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      description: SITE_DESCRIPTION,
+    },
+    {
+      '@type': 'SoftwareSourceCode',
+      name: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      codeRepositoryUrl: REPO_URL,
+      programmingLanguage: 'TypeScript',
+      license: 'https://opensource.org/license/mit',
+    },
+  ],
+};
+
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'Interlude — Components for the in-between' },
-      {
-        name: 'description',
-        content:
-          'Open-source React components for loading states and AI interactions: honest loaders, hidden mini-games, agent activity, sources and approvals. Install one at a time.',
-      },
-    ],
-    links: [
-      { rel: 'stylesheet', href: appCss },
-      { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
-      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&family=JetBrains+Mono:wght@400..600&display=swap',
-      },
-    ],
-    scripts: [{ children: themeScript }],
-  }),
+  head: () => {
+    const page = pageHead({ path: '/' });
+    return {
+      meta: [
+        { charSet: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'theme-color', content: '#0e0f11' },
+        ...page.meta,
+      ],
+      links: [
+        { rel: 'stylesheet', href: appCss },
+        { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&family=JetBrains+Mono:wght@400..600&display=swap',
+        },
+      ],
+      scripts: [
+        { children: themeScript },
+        { type: 'application/ld+json', children: JSON.stringify(structuredData) },
+      ],
+    };
+  },
   shellComponent: RootDocument,
   component: () => (
     <>
@@ -51,15 +76,7 @@ export const Route = createRootRoute({
       <Footer />
     </>
   ),
-  notFoundComponent: () => (
-    <div className="page py-32">
-      <p className="eyebrow">404</p>
-      <h1 className="mt-3 text-3xl font-semibold tracking-tight">Nothing is loading here.</h1>
-      <ButtonLink to="/" className="mt-6">
-        Back to the start
-      </ButtonLink>
-    </div>
-  ),
+  notFoundComponent: NotFound,
 });
 
 function RootDocument({ children }: { children: ReactNode }) {

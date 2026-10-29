@@ -41,6 +41,18 @@ export const docEntries: DocEntry[] = [
   ),
 ];
 
+/** Pure: the URL path of a docs entry; the inverse of docKeyFor. */
+export const pathFor = (entry: DocEntry): string => {
+  switch (entry.kind) {
+    case 'page':
+      return `/docs/${entry.slug}`;
+    case 'components':
+      return '/docs/components';
+    case 'component':
+      return `/docs/components/${entry.slug}`;
+  }
+};
+
 /** Pure: the docs entry a pathname shows (the first guide for the bare /docs). */
 export function docKeyFor(pathname: string): string {
   const [, , first, second] = pathname.replace(/\/+$/, '').split('/');

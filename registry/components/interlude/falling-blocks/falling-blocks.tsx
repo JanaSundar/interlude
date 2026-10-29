@@ -31,7 +31,7 @@ export function FallingBlocksGame(props: GameProps) {
   const rng = useRef(createRng(seed ?? randomSeed()));
   const state = useRef(createBlocks(rng.current));
   const [hud, setHud] = useState(() => snapshot(state.current));
-  const { ref, begin } = useCanvas(W, H);
+  const { ref, paint } = useCanvas(W, H);
   const [scope, animate] = useAnimate<HTMLDivElement>();
 
   const apply = (next: BlocksState) => {
@@ -69,31 +69,29 @@ export function FallingBlocksGame(props: GameProps) {
   useGameLoop(
     {
       update: () => apply(fall(state.current, rng.current)),
-      render: () => {
-        const frame = begin();
-        if (!frame) return;
-        const { ctx, palette } = frame;
-        const s = state.current;
-        dotField(ctx, COLS, ROWS, CELL, palette.fg);
-        ctx.fillStyle = palette.fg;
-        s.board.forEach((c, i) => {
-          if (!c) return;
-          ctx.globalAlpha = 0.55;
-          roundRect(
-            ctx,
-            (i % COLS) * CELL + 1,
-            Math.floor(i / COLS) * CELL + 1,
-            CELL - 2,
-            CELL - 2,
-            2,
-          );
-        });
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = palette.accent;
-        for (const [x, y] of pieceCells(s.piece)) {
-          if (y >= 0) roundRect(ctx, x * CELL + 1, y * CELL + 1, CELL - 2, CELL - 2, 2);
-        }
-      },
+      render: () =>
+        paint((ctx, palette) => {
+          const s = state.current;
+          dotField(ctx, COLS, ROWS, CELL, palette.fg);
+          ctx.fillStyle = palette.fg;
+          s.board.forEach((c, i) => {
+            if (!c) return;
+            ctx.globalAlpha = 0.55;
+            roundRect(
+              ctx,
+              (i % COLS) * CELL + 1,
+              Math.floor(i / COLS) * CELL + 1,
+              CELL - 2,
+              CELL - 2,
+              2,
+            );
+          });
+          ctx.globalAlpha = 1;
+          ctx.fillStyle = palette.accent;
+          for (const [x, y] of pieceCells(s.piece)) {
+            if (y >= 0) roundRect(ctx, x * CELL + 1, y * CELL + 1, CELL - 2, CELL - 2, 2);
+          }
+        }),
     },
     gravityInterval(hud.lines, speed),
     !paused && !hud.over,

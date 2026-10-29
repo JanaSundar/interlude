@@ -1,6 +1,7 @@
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import { ComponentDocPage } from '@/site/docs/component-page';
 import { findItem } from '@/site/items';
+import { pageHead } from '@/site/meta';
 
 export const Route = createFileRoute('/docs/components/$slug')({
   loader: ({ params }) => {
@@ -9,12 +10,11 @@ export const Route = createFileRoute('/docs/components/$slug')({
   },
   head: ({ params }) => {
     const item = findItem(params.slug);
-    return {
-      meta: [
-        { title: `${item?.name ?? 'Component'} — Interlude` },
-        ...(item ? [{ name: 'description', content: item.description }] : []),
-      ],
-    };
+    return pageHead({
+      title: item?.name ?? 'Component',
+      description: item?.description,
+      path: `/docs/components/${params.slug}`,
+    });
   },
   component: ComponentRoute,
 });

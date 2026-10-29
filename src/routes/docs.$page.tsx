@@ -1,6 +1,7 @@
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import { GuidePage } from '@/site/docs/guide-page';
 import { findDocPage } from '@/site/docs/pages';
+import { pageHead } from '@/site/meta';
 
 export const Route = createFileRoute('/docs/$page')({
   loader: ({ params }) => {
@@ -9,12 +10,11 @@ export const Route = createFileRoute('/docs/$page')({
   },
   head: ({ params }) => {
     const page = findDocPage(params.page);
-    return {
-      meta: [
-        { title: `${page?.title ?? 'Docs'} — Interlude` },
-        ...(page ? [{ name: 'description', content: page.description }] : []),
-      ],
-    };
+    return pageHead({
+      title: page?.title ?? 'Docs',
+      description: page?.description,
+      path: `/docs/${params.page}`,
+    });
   },
   component: DocPageRoute,
 });

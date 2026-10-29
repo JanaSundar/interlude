@@ -129,11 +129,17 @@ export function axis(
   return neg === pos ? 0 : neg ? -1 : 1;
 }
 
-/** Drag-to-steer: the pressed pointer position in board units, else null. */
-export function usePointerTarget(width: number, height: number) {
+/**
+ * Drag-to-steer: the pressed pointer position in board units, else null.
+ * Presses on a button inside the board (a restart overlay) are left alone, or
+ * capturing the pointer would swallow the button's click.
+ */
+export function usePointerTarget(width: number, height: number, onPress?: () => void) {
   const target = useRef<{ x: number; y: number } | null>(null);
   const handlers = {
     onPointerDown: (e: PointerEvent) => {
+      if ((e.target as Element).closest('button')) return;
+      onPress?.();
       e.currentTarget.setPointerCapture?.(e.pointerId);
       target.current = pointerToBoard(e, width, height);
     },

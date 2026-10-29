@@ -4,12 +4,18 @@ import { ComponentGrid, isGroup } from '@/site/component-grid';
 import { DocsLayout } from '@/site/docs/layout';
 import { COMPONENTS_KEY } from '@/site/docs/order';
 import { items } from '@/site/items';
+import { pageHead } from '@/site/meta';
 
 export const Route = createFileRoute('/docs/components/')({
   validateSearch: (search): { group?: Group } => ({
     group: isGroup(search.group) ? search.group : undefined,
   }),
-  head: () => ({ meta: [{ title: 'Components — Interlude' }] }),
+  head: () =>
+    pageHead({
+      title: 'Components',
+      description: `${items.length} React components for loading states and AI interactions, each installable on its own with the shadcn CLI.`,
+      path: '/docs/components',
+    }),
   component: ComponentsIndex,
 });
 

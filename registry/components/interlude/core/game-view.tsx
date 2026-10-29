@@ -125,7 +125,7 @@ export function GameView({
         initial={reduced ? false : { opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ ...softSpring, delay: reduced ? 0 : 0.06 }}
-        className="relative rounded-[12px] bg-current/[0.025] p-2 outline-none focus-visible:ring-2 focus-visible:ring-(--il-accent)"
+        className="relative rounded-[12px] bg-current/[0.025] p-2 outline-none"
       >
         <StageKeysContext.Provider value={keys}>
           <Game

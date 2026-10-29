@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'motion/react';
 import type { Ref } from 'react';
 import { groups, type Group } from '@registry/catalog';
-import { fade, softSpring } from '@registry/components/interlude/primitives/motion';
+import { softSpring } from '@registry/components/interlude/primitives/motion';
 import { ComponentCard } from './component-card';
 import { items, type Item } from './items';
 import { Segmented } from './ui';
@@ -19,14 +19,10 @@ export function ComponentGrid({
   onFilterChange: (filter: Filter) => void;
 }) {
   const shown = items.filter((i) => filter === 'all' || i.group === filter);
-  const blurb =
-    filter === 'all'
-      ? 'Every component, by what it does.'
-      : groups.find((g) => g.id === filter)!.blurb;
 
   return (
     <>
-      <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-line-strong pb-4">
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-line-strong pb-4">
         <Segmented<Filter>
           label="Filter by purpose"
           wrap
@@ -40,21 +36,6 @@ export function ComponentGrid({
             })),
           ]}
         />
-        {/* Fixed-height slot: the description swaps without moving anything around it. */}
-        <div className="relative h-5 min-w-0 flex-1 overflow-hidden text-right text-sm text-muted">
-          <AnimatePresence mode="popLayout" initial={false}>
-            <motion.p
-              key={filter}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={fade}
-              className="truncate"
-            >
-              {blurb}
-            </motion.p>
-          </AnimatePresence>
-        </div>
       </div>
 
       <ul

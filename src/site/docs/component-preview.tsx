@@ -1,10 +1,11 @@
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence } from 'motion/react';
 import { useState } from 'react';
 import { AutoHeight } from '@registry/components/interlude/primitives/auto-size';
-import { fade } from '@registry/components/interlude/primitives/motion';
+import { Fade } from '@registry/components/interlude/primitives/fade';
 import { CodeTabs } from '../code';
 import type { Item } from '../items';
 import type { Values } from '../playground/playground';
+import { stageClass } from '../playground/shared';
 import { Button, Segmented } from '../ui';
 
 type View = 'preview' | 'code';
@@ -40,47 +41,27 @@ export function ComponentPreview({
         />
         <AnimatePresence initial={false}>
           {view === 'preview' && (
-            <motion.span
-              key="replay"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={fade}
-            >
+            <Fade key="replay">
               <Button variant="ghost" size="sm" onClick={() => setRun((r) => r + 1)}>
                 Replay
               </Button>
-            </motion.span>
+            </Fade>
           )}
         </AnimatePresence>
       </div>
       <AutoHeight>
         <AnimatePresence mode="popLayout" initial={false}>
           {view === 'preview' ? (
-            <motion.div
-              key="preview"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={fade}
-              className="stage-grid grid min-h-64 place-items-center p-6 sm:p-10"
-            >
+            <Fade key="preview" className={stageClass('min-h-64')}>
               <Preview key={run} values={values} />
-            </motion.div>
+            </Fade>
           ) : (
-            <motion.div
-              key="code"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={fade}
-              className="p-3"
-            >
+            <Fade key="code" className="p-3">
               <CodeTabs
                 label="Code"
                 tabs={[{ id: 'code', label: file ?? `${item.slug}.tsx`, code: code(values) }]}
               />
-            </motion.div>
+            </Fade>
           )}
         </AnimatePresence>
       </AutoHeight>
