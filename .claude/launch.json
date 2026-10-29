@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "interlude",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["exec", "vp", "dev", "--port", "3000"],
+      "port": 3000
+    }
+  ]
+}

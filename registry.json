@@ -1,0 +1,722 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "interlude",
+  "homepage": "https://github.com/JanaSundar/interlude",
+  "items": [
+    {
+      "name": "interlude-primitives",
+      "type": "registry:component",
+      "title": "Interlude primitives",
+      "description": "Status vocabulary, theme tokens, motion conventions, status icons, disclosure, live region, dot matrix and safe formatting shared by every Interlude component.",
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "registry/components/interlude/primitives/auto-size.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/auto-size.tsx"
+        },
+        {
+          "path": "registry/components/interlude/primitives/collapsible.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/collapsible.tsx"
+        },
+        {
+          "path": "registry/components/interlude/primitives/cx.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/cx.ts"
+        },
+        {
+          "path": "registry/components/interlude/primitives/dot-matrix.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/dot-matrix.tsx"
+        },
+        {
+          "path": "registry/components/interlude/primitives/icons.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/icons.tsx"
+        },
+        {
+          "path": "registry/components/interlude/primitives/live-region.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/live-region.tsx"
+        },
+        {
+          "path": "registry/components/interlude/primitives/loader-frame.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/loader-frame.tsx"
+        },
+        {
+          "path": "registry/components/interlude/primitives/loop.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/loop.ts"
+        },
+        {
+          "path": "registry/components/interlude/primitives/motion.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/motion.ts"
+        },
+        {
+          "path": "registry/components/interlude/primitives/patterns.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/patterns.ts"
+        },
+        {
+          "path": "registry/components/interlude/primitives/presence-slot.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/presence-slot.tsx"
+        },
+        {
+          "path": "registry/components/interlude/primitives/pressable.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/pressable.tsx"
+        },
+        {
+          "path": "registry/components/interlude/primitives/safe.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/safe.ts"
+        },
+        {
+          "path": "registry/components/interlude/primitives/status-icon.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/status-icon.tsx"
+        },
+        {
+          "path": "registry/components/interlude/primitives/status.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/status.ts"
+        },
+        {
+          "path": "registry/components/interlude/primitives/task-result.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/task-result.tsx"
+        },
+        {
+          "path": "registry/components/interlude/primitives/tint.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/tint.ts"
+        },
+        {
+          "path": "registry/components/interlude/primitives/tokens.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/tokens.ts"
+        },
+        {
+          "path": "registry/components/interlude/primitives/use-elapsed.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/primitives/use-elapsed.ts"
+        }
+      ]
+    },
+    {
+      "name": "interlude-core",
+      "type": "registry:component",
+      "title": "Interlude game core",
+      "description": "Task lifecycle, game shell, input and fixed-step loop shared by the playable loaders.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/core/canvas.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/core/canvas.ts"
+        },
+        {
+          "path": "registry/components/interlude/core/game-ui.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/core/game-ui.tsx"
+        },
+        {
+          "path": "registry/components/interlude/core/game-view.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/core/game-view.tsx"
+        },
+        {
+          "path": "registry/components/interlude/core/input.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/core/input.ts"
+        },
+        {
+          "path": "registry/components/interlude/core/interlude.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/core/interlude.tsx"
+        },
+        {
+          "path": "registry/components/interlude/core/lifecycle.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/core/lifecycle.ts"
+        },
+        {
+          "path": "registry/components/interlude/core/loader-view.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/core/loader-view.tsx"
+        },
+        {
+          "path": "registry/components/interlude/core/random.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/core/random.ts"
+        },
+        {
+          "path": "registry/components/interlude/core/types.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/core/types.ts"
+        },
+        {
+          "path": "registry/components/interlude/core/use-game-loop.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/core/use-game-loop.ts"
+        },
+        {
+          "path": "registry/components/interlude/core/use-game-status.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/core/use-game-status.ts"
+        },
+        {
+          "path": "registry/components/interlude/core/use-interlude.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/core/use-interlude.ts"
+        }
+      ]
+    },
+    {
+      "name": "dot-matrix-loader",
+      "type": "registry:component",
+      "title": "Dot Matrix",
+      "description": "A 3×3 matrix with a diagonal ripple. Accepts any pure dot pattern.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/dot-matrix-loader/dot-matrix-loader.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/dot-matrix-loader/dot-matrix-loader.tsx"
+        },
+        {
+          "path": "registry/components/interlude/dot-matrix-loader/pattern.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/dot-matrix-loader/pattern.ts"
+        }
+      ],
+      "categories": ["waiting"],
+      "docs": "import { DotMatrixLoader } from '@/components/interlude/dot-matrix-loader/dot-matrix-loader';\n\n<DotMatrixLoader status={status} label=\"Uploading files\" />"
+    },
+    {
+      "name": "orbital-loader",
+      "type": "registry:component",
+      "title": "Orbital",
+      "description": "Satellites on faint nested orbits, inner ones faster, around a solid core.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/orbital-loader/orbital-loader.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/orbital-loader/orbital-loader.tsx"
+        },
+        {
+          "path": "registry/components/interlude/orbital-loader/orbits.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/orbital-loader/orbits.ts"
+        }
+      ],
+      "categories": ["waiting"],
+      "docs": "import { OrbitalLoader } from '@/components/interlude/orbital-loader/orbital-loader';\n\n<OrbitalLoader status={status} label=\"Uploading files\" />"
+    },
+    {
+      "name": "pulse-loader",
+      "type": "registry:component",
+      "title": "Pulse",
+      "description": "A core with two rings breathing outward, half a beat apart.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/pulse-loader/pulse-loader.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/pulse-loader/pulse-loader.tsx"
+        }
+      ],
+      "categories": ["waiting"],
+      "docs": "import { PulseLoader } from '@/components/interlude/pulse-loader/pulse-loader';\n\n<PulseLoader status={status} label=\"Uploading files\" />"
+    },
+    {
+      "name": "progress-loader",
+      "type": "registry:component",
+      "title": "Progress",
+      "description": "Determinate when your app supplies a value, an honest indeterminate sweep when it doesn’t.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/progress-loader/progress-loader.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/progress-loader/progress-loader.tsx"
+        },
+        {
+          "path": "registry/components/interlude/progress-loader/progress.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/progress-loader/progress.ts"
+        }
+      ],
+      "categories": ["waiting"],
+      "docs": "import { ProgressLoader } from '@/components/interlude/progress-loader/progress-loader';\n\n<ProgressLoader status={status} label=\"Uploading files\" value={bytesSent} max={totalBytes} showValue />"
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:component",
+      "title": "Skeleton",
+      "description": "Line, block and circle placeholders, plus a group that swaps them for content.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/skeleton/skeleton.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/skeleton/skeleton.tsx"
+        }
+      ],
+      "categories": ["waiting"],
+      "docs": "import { SkeletonGroup, SkeletonText } from '@/components/interlude/skeleton/skeleton';\n\n<SkeletonGroup loading={isLoading} label=\"Loading profile\" placeholder={<SkeletonText lines={3} />}>\n  <Profile user={user} />\n</SkeletonGroup>"
+    },
+    {
+      "name": "thinking-indicator",
+      "type": "registry:component",
+      "title": "Thinking Indicator",
+      "description": "Thinking, generating, streaming, waiting for a tool, paused or finished. A distinct dot pattern per state, plus words.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/thinking-indicator/patterns.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/thinking-indicator/patterns.ts"
+        },
+        {
+          "path": "registry/components/interlude/thinking-indicator/thinking-indicator.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/thinking-indicator/thinking-indicator.tsx"
+        }
+      ],
+      "categories": ["status"],
+      "docs": "import { ThinkingIndicator } from '@/components/interlude/thinking-indicator/thinking-indicator';\n\n<ThinkingIndicator state={run.state} tool={run.toolName} startedAt={run.startedAt} variant=\"detailed\" />"
+    },
+    {
+      "name": "agent-activity",
+      "type": "registry:component",
+      "title": "Agent Activity",
+      "description": "A chronological list of what an agent reported: searches, reads, tool calls, approvals. Handles duplicate and out-of-order events.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/agent-activity/agent-activity.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/agent-activity/agent-activity.tsx"
+        },
+        {
+          "path": "registry/components/interlude/agent-activity/events.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/agent-activity/events.ts"
+        }
+      ],
+      "categories": ["activity"],
+      "docs": "import { AgentActivity } from '@/components/interlude/agent-activity/agent-activity';\n\n// Append raw events as they arrive; updates share an id.\n<AgentActivity events={events} title=\"Working on your request\" />"
+    },
+    {
+      "name": "tool-call-card",
+      "type": "registry:component",
+      "title": "Tool Call",
+      "description": "One tool invocation with its arguments, status, duration and result or error. Secrets are masked.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/tool-call-card/tool-call-card.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/tool-call-card/tool-call-card.tsx"
+        }
+      ],
+      "categories": ["activity"],
+      "docs": "import { ToolCallCard } from '@/components/interlude/tool-call-card/tool-call-card';\n\n<ToolCallCard name=\"search_docs\" status={call.status} args={call.args} result={call.result} durationMs={call.ms} />"
+    },
+    {
+      "name": "approval-gate",
+      "type": "registry:component",
+      "title": "Approval Gate",
+      "description": "Presents a proposed action for explicit approval or rejection. Shows an outcome only once your app confirms it.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/approval-gate/approval-gate.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/approval-gate/approval-gate.tsx"
+        },
+        {
+          "path": "registry/components/interlude/approval-gate/decision.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/approval-gate/decision.ts"
+        }
+      ],
+      "categories": ["actions"],
+      "docs": "import { ApprovalGate } from '@/components/interlude/approval-gate/approval-gate';\n\n<ApprovalGate\n  title=\"Delete 3 files\"\n  action=\"rm build/*.log\"\n  risk=\"high\"\n  status={approval.status}\n  onApprove={() => runtime.approve(id)}\n  onReject={(reason) => runtime.reject(id, reason)}\n/>"
+    },
+    {
+      "name": "ai-sources",
+      "type": "registry:component",
+      "title": "Sources",
+      "description": "Numbered sources with inline citations and expandable excerpts. Unsafe or missing links are shown as text, never invented.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/ai-sources/ai-sources.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/ai-sources/ai-sources.tsx"
+        },
+        {
+          "path": "registry/components/interlude/ai-sources/sources.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/ai-sources/sources.ts"
+        }
+      ],
+      "categories": ["output"],
+      "docs": "import { Citation, SourceList, SourcesProvider } from '@/components/interlude/ai-sources/ai-sources';\n\n<SourcesProvider sources={retrieved}>\n  <p>Motion respects reduced motion by default<Citation id=\"motion-docs\" />.</p>\n  <SourceList />\n</SourcesProvider>"
+    },
+    {
+      "name": "streaming-markdown",
+      "type": "registry:component",
+      "title": "Streaming Markdown",
+      "description": "Renders a growing response as a safe Markdown subset: headings, lists, quotes, code and links. Raw HTML stays text.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/streaming-markdown/parse.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/streaming-markdown/parse.ts"
+        },
+        {
+          "path": "registry/components/interlude/streaming-markdown/streaming-markdown.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/streaming-markdown/streaming-markdown.tsx"
+        }
+      ],
+      "categories": ["output"],
+      "docs": "import { StreamingMarkdown } from '@/components/interlude/streaming-markdown/streaming-markdown';\n\n<StreamingMarkdown content={text} streaming={isStreaming} stopped={wasStopped} />"
+    },
+    {
+      "name": "generative-card",
+      "type": "registry:component",
+      "title": "Generative Card",
+      "description": "Summaries, plans, comparisons and recommendations from model JSON, through a validated block contract.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/generative-card/blocks.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/generative-card/blocks.tsx"
+        },
+        {
+          "path": "registry/components/interlude/generative-card/card.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/generative-card/card.ts"
+        },
+        {
+          "path": "registry/components/interlude/generative-card/generative-card.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/generative-card/generative-card.tsx"
+        }
+      ],
+      "categories": ["output"],
+      "docs": "import { GenerativeCard } from '@/components/interlude/generative-card/generative-card';\n\n<GenerativeCard spec={modelJson} streaming={isStreaming} onAction={(id) => handle(id)} />"
+    },
+    {
+      "name": "response-actions",
+      "type": "registry:component",
+      "title": "Response Actions",
+      "description": "A compact toolbar for finished responses. Copy reports success only after the clipboard confirms it.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/response-actions/response-actions.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/response-actions/response-actions.tsx"
+        }
+      ],
+      "categories": ["actions"],
+      "docs": "import { ResponseActions } from '@/components/interlude/response-actions/response-actions';\n\n<ResponseActions actions={['copy', 'regenerate', 'edit']} copyText={answer} onAction={handle} />"
+    },
+    {
+      "name": "snake",
+      "type": "registry:component",
+      "title": "Snake",
+      "description": "A short trail of dots pacing the border of a 4×4 matrix. Click it to discover what's inside.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-core"],
+      "files": [
+        {
+          "path": "registry/components/interlude/snake/logic.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/snake/logic.ts"
+        },
+        {
+          "path": "registry/components/interlude/snake/pattern.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/snake/pattern.ts"
+        },
+        {
+          "path": "registry/components/interlude/snake/snake.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/snake/snake.tsx"
+        }
+      ],
+      "categories": ["playable", "arcade"],
+      "docs": "import { SnakeLoader } from '@/components/interlude/snake/snake';\n\n<SnakeLoader active={isGenerating} label=\"Generating your response\" />"
+    },
+    {
+      "name": "falling-blocks",
+      "type": "registry:component",
+      "title": "Falling Blocks",
+      "description": "Dots drop one column at a time, settle into a row, then clear. Click it to discover what's inside.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-core"],
+      "files": [
+        {
+          "path": "registry/components/interlude/falling-blocks/falling-blocks.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/falling-blocks/falling-blocks.tsx"
+        },
+        {
+          "path": "registry/components/interlude/falling-blocks/logic.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/falling-blocks/logic.ts"
+        },
+        {
+          "path": "registry/components/interlude/falling-blocks/pattern.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/falling-blocks/pattern.ts"
+        }
+      ],
+      "categories": ["playable", "puzzle"],
+      "docs": "import { FallingBlocksLoader } from '@/components/interlude/falling-blocks/falling-blocks';\n\n<FallingBlocksLoader active={isGenerating} label=\"Generating your response\" />"
+    },
+    {
+      "name": "pong",
+      "type": "registry:component",
+      "title": "Pong",
+      "description": "One dot volleys across the middle row; the edges answer. Click it to discover what's inside.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-core"],
+      "files": [
+        {
+          "path": "registry/components/interlude/pong/logic.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/pong/logic.ts"
+        },
+        {
+          "path": "registry/components/interlude/pong/pattern.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/pong/pattern.ts"
+        },
+        {
+          "path": "registry/components/interlude/pong/pong.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/pong/pong.tsx"
+        }
+      ],
+      "categories": ["playable", "arcade"],
+      "docs": "import { PongLoader } from '@/components/interlude/pong/pong';\n\n<PongLoader active={isGenerating} label=\"Generating your response\" />"
+    },
+    {
+      "name": "breakout",
+      "type": "registry:component",
+      "title": "Breakout",
+      "description": "A rising dot dims the top row one dot at a time. Click it to discover what's inside.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-core"],
+      "files": [
+        {
+          "path": "registry/components/interlude/breakout/breakout.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/breakout/breakout.tsx"
+        },
+        {
+          "path": "registry/components/interlude/breakout/logic.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/breakout/logic.ts"
+        },
+        {
+          "path": "registry/components/interlude/breakout/pattern.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/breakout/pattern.ts"
+        }
+      ],
+      "categories": ["playable", "arcade"],
+      "docs": "import { BreakoutLoader } from '@/components/interlude/breakout/breakout';\n\n<BreakoutLoader active={isGenerating} label=\"Generating your response\" />"
+    },
+    {
+      "name": "merge-2048",
+      "type": "registry:component",
+      "title": "2048",
+      "description": "Two dots slide together and fuse into one brighter dot. Click it to discover what's inside.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-core"],
+      "files": [
+        {
+          "path": "registry/components/interlude/merge-2048/logic.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/merge-2048/logic.ts"
+        },
+        {
+          "path": "registry/components/interlude/merge-2048/merge-2048.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/merge-2048/merge-2048.tsx"
+        },
+        {
+          "path": "registry/components/interlude/merge-2048/pattern.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/merge-2048/pattern.ts"
+        }
+      ],
+      "categories": ["playable", "puzzle"],
+      "docs": "import { Merge2048Loader } from '@/components/interlude/merge-2048/merge-2048';\n\n<Merge2048Loader active={isGenerating} label=\"Generating your response\" />"
+    },
+    {
+      "name": "memory-match",
+      "type": "registry:component",
+      "title": "Memory Match",
+      "description": "Pairs of dots turn over together in a slow round. Click it to discover what's inside.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-core"],
+      "files": [
+        {
+          "path": "registry/components/interlude/memory-match/logic.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/memory-match/logic.ts"
+        },
+        {
+          "path": "registry/components/interlude/memory-match/memory-match.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/memory-match/memory-match.tsx"
+        },
+        {
+          "path": "registry/components/interlude/memory-match/pattern.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/memory-match/pattern.ts"
+        }
+      ],
+      "categories": ["playable", "puzzle"],
+      "docs": "import { MemoryMatchLoader } from '@/components/interlude/memory-match/memory-match';\n\n<MemoryMatchLoader active={isGenerating} label=\"Generating your response\" />"
+    },
+    {
+      "name": "whack-a-mole",
+      "type": "registry:component",
+      "title": "Whack-a-Mole",
+      "description": "Dots pop up one by one in scattered positions. Click it to discover what's inside.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-core"],
+      "files": [
+        {
+          "path": "registry/components/interlude/whack-a-mole/logic.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/whack-a-mole/logic.ts"
+        },
+        {
+          "path": "registry/components/interlude/whack-a-mole/pattern.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/whack-a-mole/pattern.ts"
+        },
+        {
+          "path": "registry/components/interlude/whack-a-mole/whack-a-mole.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/whack-a-mole/whack-a-mole.tsx"
+        }
+      ],
+      "categories": ["playable", "reflex"],
+      "docs": "import { WhackAMoleLoader } from '@/components/interlude/whack-a-mole/whack-a-mole';\n\n<WhackAMoleLoader active={isGenerating} label=\"Generating your response\" />"
+    },
+    {
+      "name": "space-shooter",
+      "type": "registry:component",
+      "title": "Space Shooter",
+      "description": "A steady stream of dots rises from a still base. Click it to discover what's inside.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-core"],
+      "files": [
+        {
+          "path": "registry/components/interlude/space-shooter/logic.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/space-shooter/logic.ts"
+        },
+        {
+          "path": "registry/components/interlude/space-shooter/pattern.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/space-shooter/pattern.ts"
+        },
+        {
+          "path": "registry/components/interlude/space-shooter/space-shooter.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/space-shooter/space-shooter.tsx"
+        }
+      ],
+      "categories": ["playable", "arcade"],
+      "docs": "import { SpaceShooterLoader } from '@/components/interlude/space-shooter/space-shooter';\n\n<SpaceShooterLoader active={isGenerating} label=\"Generating your response\" />"
+    },
+    {
+      "name": "sliding-puzzle",
+      "type": "registry:component",
+      "title": "Sliding Puzzle",
+      "description": "A gap travels around a 3×3 ring as dots slide into it. Click it to discover what's inside.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-core"],
+      "files": [
+        {
+          "path": "registry/components/interlude/sliding-puzzle/logic.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/sliding-puzzle/logic.ts"
+        },
+        {
+          "path": "registry/components/interlude/sliding-puzzle/pattern.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/sliding-puzzle/pattern.ts"
+        },
+        {
+          "path": "registry/components/interlude/sliding-puzzle/sliding-puzzle.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/sliding-puzzle/sliding-puzzle.tsx"
+        }
+      ],
+      "categories": ["playable", "puzzle"],
+      "docs": "import { SlidingPuzzleLoader } from '@/components/interlude/sliding-puzzle/sliding-puzzle';\n\n<SlidingPuzzleLoader active={isGenerating} label=\"Generating your response\" />"
+    },
+    {
+      "name": "reaction-test",
+      "type": "registry:component",
+      "title": "Reaction Test",
+      "description": "A ring charges, holds, and the centre flashes. Click it to discover what's inside.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-core"],
+      "files": [
+        {
+          "path": "registry/components/interlude/reaction-test/logic.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/reaction-test/logic.ts"
+        },
+        {
+          "path": "registry/components/interlude/reaction-test/pattern.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/reaction-test/pattern.ts"
+        },
+        {
+          "path": "registry/components/interlude/reaction-test/reaction-test.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/reaction-test/reaction-test.tsx"
+        }
+      ],
+      "categories": ["playable", "reflex"],
+      "docs": "import { ReactionTestLoader } from '@/components/interlude/reaction-test/reaction-test';\n\n<ReactionTestLoader active={isGenerating} label=\"Generating your response\" />"
+    }
+  ]
+}
