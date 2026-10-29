@@ -64,7 +64,7 @@ export const Route = createRootRoute({
       </a>
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-y-0 left-1/2 hidden w-full max-w-[76rem] -translate-x-1/2 sm:block"
+        className="pointer-events-none fixed inset-y-0 left-1/2 hidden w-full max-w-(--page-width) -translate-x-1/2 sm:block"
       >
         <span className="dots-y absolute inset-y-0 left-0" />
         <span className="dots-y absolute inset-y-0 right-0" />

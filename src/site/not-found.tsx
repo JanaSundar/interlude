@@ -87,7 +87,7 @@ export function NotFound() {
         <SectionLabel index="404" className="mt-6">
           Page not found
         </SectionLabel>
-        <h1 className="mt-5 text-[clamp(2rem,6vw,3.25rem)] leading-none font-semibold tracking-[-0.04em]">
+        <h1 className="mt-5 text-[clamp(1.75rem,6vw,3.25rem)] leading-none font-semibold tracking-[-0.04em]">
           Nothing is <span className="whitespace-nowrap text-faint">loading here.</span>
         </h1>
         <p className="mt-4 max-w-md text-muted">

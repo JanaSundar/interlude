@@ -23,6 +23,7 @@
 
 /* Light: cool paper, graphite ink, one warm signal colour. */
 :root {
+  --page-width: 90rem;
   --bg: oklch(0.985 0.002 260);
   --raised: oklch(1 0 0);
   --fg: oklch(0.19 0.006 260);
@@ -162,7 +163,7 @@
 }
 
 @utility page {
-  @apply mx-auto w-full max-w-[76rem] px-4 sm:px-8;
+  @apply mx-auto w-full max-w-(--page-width) px-4 sm:px-8;
 }
 
 /*
@@ -207,11 +208,17 @@
 @utility fade-x {
   mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
 }
+/* A horizontal rule never runs wider than the page, so it meets the side rails. */
+@utility dotted-span {
+  left: 50%;
+  width: min(100%, var(--page-width));
+  transform: translateX(-50%);
+}
 @utility dotted-t {
   &::before {
     content: '';
     position: absolute;
-    inset-inline: 0;
+    @apply dotted-span;
     top: 0;
     pointer-events: none;
     @apply dots-x fade-x;
@@ -231,7 +238,7 @@
   &::after {
     content: '';
     position: absolute;
-    inset-inline: 0;
+    @apply dotted-span;
     bottom: 0;
     pointer-events: none;
     @apply dots-x fade-x;

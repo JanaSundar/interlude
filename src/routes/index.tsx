@@ -56,12 +56,12 @@ function Home() {
       <section className="page grid items-center gap-12 pt-14 pb-20 sm:pt-20 md:gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
         <div className="min-w-0">
           <SectionLabel index="00">Open-source React registry</SectionLabel>
-          <h1 className="mt-6 text-[clamp(2.75rem,7vw,5.25rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
+          <h1 className="mt-6 text-[clamp(2.25rem,6.5vw,5.25rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
             Components
             <br />
             for the <span className="whitespace-nowrap text-faint">in-between.</span>
           </h1>
-          <p className="mt-6 max-w-md text-[17px] md:max-w-xl md:text-lg leading-relaxed text-muted">
+          <p className="mt-6 max-w-md text-[15px] leading-relaxed sm:text-base md:max-w-xl lg:text-[17px] text-muted">
             Loaders that wait honestly, some with a game inside, and AI components that show what an
             agent actually did. Typed props, no provider lock-in, installed one at a time.
           </p>
@@ -96,7 +96,7 @@ function Home() {
         <SectionLabel index="01">Components</SectionLabel>
         <div className="mt-4 flex flex-wrap items-end justify-between gap-8">
           <div className="max-w-xl">
-            <h2 className="text-3xl font-semibold tracking-tight">
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
               Small, focused pieces. Each one installs on its own.
             </h2>
             <p className="mt-3 text-muted">

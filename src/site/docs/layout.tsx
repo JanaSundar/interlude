@@ -35,17 +35,17 @@ export function DocsLayout({
   const article = useRef<HTMLElement>(null);
   const { entries, active, select } = useToc(article, current);
   return (
-    <div className="xl:flex xl:gap-10">
+    <div className="min-w-0 xl:flex xl:gap-10">
       <div className="min-w-0 flex-1">
         <article ref={article} className={cx('mx-auto', !wide && 'max-w-[44rem]')}>
           <header className="flex items-start justify-between gap-4">
             <div className="min-w-0">
               <p className="eyebrow">{eyebrow}</p>
-              <h1 className="mt-3 text-4xl font-semibold tracking-tight">{title}</h1>
+              <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h1>
             </div>
             <StepButtons current={current} />
           </header>
-          <p className="mt-3 text-lg text-muted">{description}</p>
+          <p className="mt-3 text-base text-muted sm:text-lg">{description}</p>
           <div className="mt-10">{children}</div>
           <PrevNext current={current} />
         </article>
@@ -69,7 +69,7 @@ export function DocsLayout({
 export function DocsShell({ children }: { children: ReactNode }) {
   const current = useRouterState({ select: (s) => docKeyFor(s.location.pathname) });
   return (
-    <div className="page grid gap-10 py-10 lg:grid-cols-[14rem_minmax(0,1fr)]">
+    <div className="page grid grid-cols-[minmax(0,1fr)] gap-10 py-10 lg:grid-cols-[14rem_minmax(0,1fr)]">
       <aside aria-label="Documentation" className="relative hidden lg:block">
         <span className="dots-y absolute inset-y-0 -right-5" aria-hidden />
         <div className="sticky top-20 max-h-[calc(100vh-6rem)] scrollbar-none overflow-y-auto pr-2 pb-8">

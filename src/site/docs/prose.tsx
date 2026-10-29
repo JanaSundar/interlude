@@ -8,7 +8,7 @@ export function Prose({ children }: { children: ReactNode }) {
   return (
     <div
       className={cx(
-        'flex flex-col gap-4 text-[15px] leading-[1.7] text-muted',
+        'flex flex-col gap-4 text-sm leading-[1.7] text-muted sm:text-[15px]',
         // Direct children only: live component previews nested in a page must keep their own styles.
         '[&>p>code]:rounded-[4px] [&>p>code]:bg-fg/[0.06] [&>p>code]:px-1 [&>p>code]:py-px [&>p>code]:text-[0.85em] [&>p>code]:text-fg',
         '[&>ul>li>code]:rounded-[4px] [&>ul>li>code]:bg-fg/[0.06] [&>ul>li>code]:px-1 [&>ul>li>code]:text-[0.85em] [&>ul>li>code]:text-fg',
@@ -31,7 +31,7 @@ export function H2({ children, toc }: { children: string; toc?: string }) {
     <h2
       id={slugify(children)}
       data-toc={toc ?? ''}
-      className="mt-10 scroll-mt-24 border-t border-line pt-8 text-xl font-semibold tracking-tight text-fg first:mt-2 first:border-t-0 first:pt-0"
+      className="mt-10 scroll-mt-24 border-t border-line pt-8 text-lg font-semibold sm:text-xl tracking-tight text-fg first:mt-2 first:border-t-0 first:pt-0"
     >
       {children}
     </h2>
