@@ -39,7 +39,7 @@ export const sourceUrl = (path: string) => `${REPO_URL}/blob/main/${path}`;
  * a different domain; every canonical, Open Graph and sitemap URL follows it.
  */
 export const SITE_URL = (
-  import.meta.env?.VITE_SITE_URL ?? 'https://interlude.janasundar.com'
+  import.meta.env?.VITE_SITE_URL ?? 'https://tryinterlude.vercel.app'
 ).replace(/\/+$/, '');
 
 export const SITE_NAME = 'Interlude';
