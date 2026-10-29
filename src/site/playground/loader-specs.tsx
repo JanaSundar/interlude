@@ -34,6 +34,10 @@ const speedControl: Control = {
   step: 0.25,
   format: times,
 };
+/** Pure: the extra prop, as the component should receive it. */
+const extraProps = <P,>(extra: ExtraProp<P> | undefined, v: Values) =>
+  extra ? { [extra.key]: Number(v[extra.key]) } : {};
+
 /** Common props for status loaders, as passed and as written. */
 const loaderProps = (v: Values) => ({
   status: asStatus(v),
@@ -54,11 +58,22 @@ const loaderCode = (v: Values, componentDefaults: Values) =>
     { speed: 1, ...componentDefaults },
   );
 
-export function statusLoaderSpec(
+/** One extra numeric prop a loader adds on top of the shared ones, e.g. Orbital's `stagger`. */
+type ExtraProp<P> = {
+  key: keyof P & string;
+  control: Control;
+  /** Value the playground starts at. */
+  initial: number;
+  /** The component's own default, so generated code omits it. */
+  componentDefault: number;
+};
+
+export function statusLoaderSpec<P extends StatusLoaderProps>(
   component: string,
   slug: string,
-  Loader: ComponentType<StatusLoaderProps>,
+  Loader: ComponentType<P>,
   size: { initial: number; default: number; min: number; max: number },
+  extra?: ExtraProp<P>,
 ): PlaygroundSpec {
   return {
     controls: [
@@ -66,6 +81,7 @@ export function statusLoaderSpec(
       labelControl('none'),
       sizeControl(size.min, size.max),
       speedControl,
+      ...(extra ? [extra.control] : []),
       accentControl,
       motionControl,
     ],
@@ -74,6 +90,7 @@ export function statusLoaderSpec(
       label: 'Uploading files',
       size: size.initial,
       speed: 1,
+      ...(extra ? { [extra.key]: extra.initial } : {}),
       ...appearanceDefaults,
     },
     examples: [
@@ -90,9 +107,22 @@ export function statusLoaderSpec(
       },
       { title: 'Custom accent', values: { accent: '#5b8cff' } },
     ],
-    Preview: ({ values }) => <Loader {...loaderProps(values)} />,
+    Preview: ({ values }) => (
+      <Loader {...({ ...loaderProps(values), ...extraProps(extra, values) } as unknown as P)} />
+    ),
     code: (v) =>
-      snippet(importLine([component], slug), jsx(component, loaderCode(v, { size: size.default }))),
+      snippet(
+        importLine([component], slug),
+        jsx(component, {
+          ...loaderCode(v, {
+            size: size.default,
+            ...(extra && { [extra.key]: extra.componentDefault }),
+          }),
+          ...(extra && v[extra.key] !== extra.componentDefault
+            ? { [extra.key]: v[extra.key] }
+            : {}),
+        }),
+      ),
     note: 'Your app owns status. Terminal states replace the indicator immediately.',
   };
 }

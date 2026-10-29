@@ -1,10 +1,20 @@
 import { motion, useTime, useTransform } from 'motion/react';
 import { LoaderFrame, type StatusLoaderProps } from '../primitives/loader-frame';
 import { clampSpeed } from '../primitives/motion';
-import { orbitPoint, ORBITS, type Orbit } from './orbits';
+import { DEFAULT_STAGGER, delayedSeconds, orbitPoint, ORBITS, type Orbit } from './orbits';
+
+export type OrbitalLoaderProps = StatusLoaderProps & {
+  /** Seconds of delay between one satellite and the next, from the inside out. 0 starts them all at the same angle. */
+  stagger?: number;
+};
 
 /** Three satellites on nested orbits. Positions come from one clock, outside React renders. */
-export function OrbitalLoader({ size = 18, speed, ...frame }: StatusLoaderProps) {
+export function OrbitalLoader({
+  size = 18,
+  speed,
+  stagger = DEFAULT_STAGGER,
+  ...frame
+}: OrbitalLoaderProps) {
   return (
     <LoaderFrame {...frame}>
       {(reduced) => (
@@ -29,9 +39,15 @@ export function OrbitalLoader({ size = 18, speed, ...frame }: StatusLoaderProps)
           <circle r="1.8" fill="var(--il-accent)" />
           {ORBITS.map((orbit, i) =>
             reduced ? (
-              <StaticSatellite key={i} orbit={orbit} />
+              <StaticSatellite key={i} orbit={orbit} index={i} stagger={Math.max(0, stagger)} />
             ) : (
-              <Satellite key={i} orbit={orbit} speed={clampSpeed(speed)} />
+              <Satellite
+                key={i}
+                orbit={orbit}
+                index={i}
+                stagger={Math.max(0, stagger)}
+                speed={clampSpeed(speed)}
+              />
             ),
           )}
         </svg>
@@ -40,14 +56,41 @@ export function OrbitalLoader({ size = 18, speed, ...frame }: StatusLoaderProps)
   );
 }
 
-function StaticSatellite({ orbit }: { orbit: Orbit }) {
-  const { x, y } = orbitPoint(orbit, 0);
-  return <circle cx={x} cy={y} r={orbit.dot} fill="var(--il-accent)" />;
+function StaticSatellite({
+  orbit,
+  index,
+  stagger,
+}: {
+  orbit: Orbit;
+  index: number;
+  stagger: number;
+}) {
+  const { x, y } = orbitPoint(orbit, delayedSeconds(0, index, stagger));
+  return <circle cx={x} cy={y} r={orbit.dot} fill="var(--il-accent)" fillOpacity={orbit.opacity} />;
 }
 
-function Satellite({ orbit, speed }: { orbit: Orbit; speed: number }) {
+function Satellite({
+  orbit,
+  index,
+  stagger,
+  speed,
+}: {
+  orbit: Orbit;
+  index: number;
+  stagger: number;
+  speed: number;
+}) {
   const time = useTime();
-  const cx = useTransform(time, (ms) => orbitPoint(orbit, (ms / 1000) * speed).x);
-  const cy = useTransform(time, (ms) => orbitPoint(orbit, (ms / 1000) * speed).y);
-  return <motion.circle cx={cx} cy={cy} r={orbit.dot} fill="var(--il-accent)" />;
+  const at = (ms: number) => orbitPoint(orbit, delayedSeconds(ms / 1000, index, stagger) * speed);
+  const cx = useTransform(time, (ms) => at(ms).x);
+  const cy = useTransform(time, (ms) => at(ms).y);
+  return (
+    <motion.circle
+      cx={cx}
+      cy={cy}
+      r={orbit.dot}
+      fill="var(--il-accent)"
+      fillOpacity={orbit.opacity}
+    />
+  );
 }

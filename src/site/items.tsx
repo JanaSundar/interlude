@@ -14,6 +14,7 @@ import {
 } from '@registry/components/interlude/memory-match/memory-match';
 import { merge2048, Merge2048Loader } from '@registry/components/interlude/merge-2048/merge-2048';
 import { OrbitalLoader } from '@registry/components/interlude/orbital-loader/orbital-loader';
+import { DEFAULT_STAGGER } from '@registry/components/interlude/orbital-loader/orbits';
 import { pong, PongLoader } from '@registry/components/interlude/pong/pong';
 import { DotMatrix } from '@registry/components/interlude/primitives/dot-matrix';
 import { Icon, type IconName } from '@registry/components/interlude/primitives/icons';
@@ -87,12 +88,26 @@ const runtime: Record<string, { Glyph: Glyph; playground: PlaygroundSpec }> = {
   },
   'orbital-loader': {
     Glyph: live(OrbitalLoader),
-    playground: statusLoaderSpec('OrbitalLoader', 'orbital-loader', OrbitalLoader, {
-      initial: 28,
-      default: 18,
-      min: 12,
-      max: 56,
-    }),
+    playground: statusLoaderSpec(
+      'OrbitalLoader',
+      'orbital-loader',
+      OrbitalLoader,
+      { initial: 28, default: 18, min: 12, max: 56 },
+      {
+        key: 'stagger',
+        control: {
+          type: 'range',
+          key: 'stagger',
+          label: 'stagger',
+          min: 0,
+          max: 1,
+          step: 0.05,
+          format: (v) => `${v}s`,
+        },
+        initial: DEFAULT_STAGGER,
+        componentDefault: DEFAULT_STAGGER,
+      },
+    ),
   },
   'pulse-loader': {
     Glyph: live(PulseLoader),

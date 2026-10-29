@@ -90,7 +90,16 @@ export const propsFor: Record<string, PropDoc[]> = {
       description: 'Any pure (phase, col, row) => frame pattern.',
     },
   ],
-  'orbital-loader': statusLoader,
+  'orbital-loader': [
+    ...statusLoader,
+    {
+      name: 'stagger',
+      type: 'number',
+      default: '0.3',
+      description:
+        'Seconds of delay between one satellite and the next, from the inside out. 0 starts them all at the same angle.',
+    },
+  ],
   'pulse-loader': statusLoader,
   'progress-loader': [
     {
