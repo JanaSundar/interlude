@@ -10,6 +10,7 @@ import {
   type PressableProps,
 } from '@registry/components/interlude/primitives/pressable';
 import { useTint } from '@registry/components/interlude/primitives/tint';
+import { useDragScroll } from './use-drag-scroll';
 
 export { cx };
 
@@ -115,10 +116,13 @@ export function Segmented<T extends string>({
   className?: string;
 }) {
   const pill = useId();
+  const scroll = useDragScroll<HTMLDivElement>();
   return (
     <div
       role="group"
       aria-label={label}
+      ref={scroll.ref}
+      {...(wrap || fill ? {} : scroll.handlers)}
       className={cx(
         fill
           ? 'grid gap-0.5 rounded-[9px] bg-fg/[0.06] p-0.5'

@@ -6,6 +6,7 @@ import { softSpring, spring } from '@registry/components/interlude/primitives/mo
 import { toLines, tokenize, type Lang, type TokenKind } from './highlight';
 import { installCommandFor, packageManagers, type PackageManager } from './meta';
 import { CopyButton, cx } from './ui';
+import { useDragScroll } from './use-drag-scroll';
 
 export type CodeTab = { id: string; label: string; code: string; lang?: Lang };
 
@@ -86,6 +87,7 @@ export function CodeTabs({
   className?: string;
 }) {
   const uid = useId();
+  const scroll = useDragScroll<HTMLDivElement>();
   const [activeId, setActive] = useTabChoice(
     tabs.map((t) => t.id),
     shareKey,
@@ -121,6 +123,8 @@ export function CodeTabs({
           role="tablist"
           aria-label={label}
           onKeyDown={onKeyDown}
+          ref={scroll.ref}
+          {...scroll.handlers}
           className="flex min-w-0 flex-1 overflow-x-auto [scrollbar-width:none]"
         >
           {tabs.map((t) => {
