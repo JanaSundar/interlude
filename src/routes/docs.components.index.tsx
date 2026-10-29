@@ -5,6 +5,7 @@ import { DocsLayout } from '@/site/docs/layout';
 import { COMPONENTS_KEY } from '@/site/docs/order';
 import { items } from '@/site/items';
 import { pageHead } from '@/site/meta';
+import { OG_DOCS, ogPath } from '@/site/og/names';
 
 export const Route = createFileRoute('/docs/components/')({
   validateSearch: (search): { group?: Group } => ({
@@ -15,6 +16,7 @@ export const Route = createFileRoute('/docs/components/')({
       title: 'Components',
       description: `${items.length} React components for loading states and AI interactions, each installable on its own with the shadcn CLI.`,
       path: '/docs/components',
+      image: ogPath(OG_DOCS),
     }),
   component: ComponentsIndex,
 });

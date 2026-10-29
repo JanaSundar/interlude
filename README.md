@@ -51,7 +51,7 @@ pnpm install
 pnpm dev        # docs site with live playgrounds
 pnpm check      # format, lint and type-check
 pnpm test       # unit tests
-pnpm build      # static build with prerendered pages, sitemap and robots.txt
+pnpm build      # static build: prerendered pages, sitemap, robots.txt and the Open Graph cards
 ```
 
 Other scripts:
@@ -59,8 +59,9 @@ Other scripts:
 ```bash
 pnpm registry   # regenerate registry.json from registry/catalog.ts
 pnpm icons      # regenerate favicons and app icons
-pnpm og         # regenerate public/og.png (the social card)
 ```
+
+Open Graph cards are drawn by [Takumi](https://takumi.kane.tw) from the catalog, one per component plus the home page and docs, so they never go stale. In development they are served live at `/og/<name>.png` (for example `/og/snake.png`); the build writes them into `dist/client/og`. Nothing is checked in.
 
 Set `VITE_SITE_URL` when building for a different domain; canonical URLs, Open Graph tags and the sitemap follow it.
 
@@ -75,7 +76,7 @@ registry/
     <component>/             one folder per installable item
 registry.json                generated; what the shadcn CLI reads
 src/                         the docs site, playgrounds and routes
-scripts/                     registry, icon and OG image generators
+scripts/                     registry, icon and OG card generators
 ```
 
 Every item depends on a shared layer (`interlude-primitives`, plus `interlude-core` for the games) through its full GitHub address, so a single `add` pulls in what it needs.

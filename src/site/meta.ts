@@ -1,4 +1,5 @@
 import { catalog, REPO } from '@registry/catalog';
+import { ogPath } from './og/names';
 
 export { REPO };
 /** How many loaders hide a game. */
@@ -50,7 +51,8 @@ export const SITE_DESCRIPTION =
 /** Pure: an absolute URL on this site for a path like `/docs/snake`. */
 export const absoluteUrl = (path: string) => `${SITE_URL}${path === '/' ? '' : path}`;
 
-export const OG_IMAGE = { path: '/og.png', width: 1200, height: 630 };
+/** Open Graph cards are drawn on request by the /og route (Takumi), one per page kind. */
+export const OG_SIZE = { width: 1200, height: 630 };
 
 /**
  * Pure: the head tags one page needs for search and sharing: title,
@@ -60,17 +62,20 @@ export function pageHead({
   title,
   description = SITE_DESCRIPTION,
   path,
+  image = ogPath('home'),
   noindex = false,
 }: {
   /** Page title without the site name; omit for the home page. */
   title?: string;
   description?: string;
   path: string;
+  /** Path of the Open Graph card; defaults to the site-wide one. */
+  image?: string;
   noindex?: boolean;
 }) {
   const full = title ? `${title} — ${SITE_NAME}` : `${SITE_NAME} — ${SITE_TAGLINE}`;
   const url = absoluteUrl(path);
-  const image = absoluteUrl(OG_IMAGE.path);
+  const imageUrl = absoluteUrl(image);
   return {
     meta: [
       { title: full },
@@ -81,14 +86,14 @@ export function pageHead({
       { property: 'og:title', content: full },
       { property: 'og:description', content: description },
       { property: 'og:url', content: url },
-      { property: 'og:image', content: image },
-      { property: 'og:image:width', content: String(OG_IMAGE.width) },
-      { property: 'og:image:height', content: String(OG_IMAGE.height) },
+      { property: 'og:image', content: imageUrl },
+      { property: 'og:image:width', content: String(OG_SIZE.width) },
+      { property: 'og:image:height', content: String(OG_SIZE.height) },
       { property: 'og:image:alt', content: `${SITE_NAME}: ${SITE_TAGLINE}` },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: full },
       { name: 'twitter:description', content: description },
-      { name: 'twitter:image', content: image },
+      { name: 'twitter:image', content: imageUrl },
     ],
     links: [{ rel: 'canonical', href: url }],
   };

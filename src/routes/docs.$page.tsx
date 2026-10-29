@@ -2,6 +2,7 @@ import { createFileRoute, notFound } from '@tanstack/react-router';
 import { GuidePage } from '@/site/docs/guide-page';
 import { findDocPage } from '@/site/docs/pages';
 import { pageHead } from '@/site/meta';
+import { OG_DOCS, ogPath } from '@/site/og/names';
 
 export const Route = createFileRoute('/docs/$page')({
   loader: ({ params }) => {
@@ -14,6 +15,7 @@ export const Route = createFileRoute('/docs/$page')({
       title: page?.title ?? 'Docs',
       description: page?.description,
       path: `/docs/${params.page}`,
+      image: ogPath(OG_DOCS),
     });
   },
   component: DocPageRoute,

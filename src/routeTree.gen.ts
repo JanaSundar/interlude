@@ -15,6 +15,7 @@ import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as DocsIndexRouteImport } from './routes/docs.index'
 import { Route as DocsPageRouteImport } from './routes/docs.$page'
+import { Route as OgSplatRouteImport } from './routes/og.$'
 import { Route as DocsComponentsIndexRouteImport } from './routes/docs.components.index'
 import { Route as DocsComponentsSlugRouteImport } from './routes/docs.components.$slug'
 
@@ -48,6 +49,11 @@ const DocsPageRoute = DocsPageRouteImport.update({
   path: '/$page',
   getParentRoute: () => DocsRoute,
 } as any)
+const OgSplatRoute = OgSplatRouteImport.update({
+  id: '/og/$',
+  path: '/og/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DocsComponentsIndexRoute = DocsComponentsIndexRouteImport.update({
   id: '/components/',
   path: '/components/',
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/docs/$page': typeof DocsPageRoute
+  '/og/$': typeof OgSplatRoute
   '/docs/': typeof DocsIndexRoute
   '/docs/components/$slug': typeof DocsComponentsSlugRoute
   '/docs/components/': typeof DocsComponentsIndexRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/docs/$page': typeof DocsPageRoute
+  '/og/$': typeof OgSplatRoute
   '/docs': typeof DocsIndexRoute
   '/docs/components/$slug': typeof DocsComponentsSlugRoute
   '/docs/components': typeof DocsComponentsIndexRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/docs/$page': typeof DocsPageRoute
+  '/og/$': typeof OgSplatRoute
   '/docs/': typeof DocsIndexRoute
   '/docs/components/$slug': typeof DocsComponentsSlugRoute
   '/docs/components/': typeof DocsComponentsIndexRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/docs/$page'
+    | '/og/$'
     | '/docs/'
     | '/docs/components/$slug'
     | '/docs/components/'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/docs/$page'
+    | '/og/$'
     | '/docs'
     | '/docs/components/$slug'
     | '/docs/components'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/docs/$page'
+    | '/og/$'
     | '/docs/'
     | '/docs/components/$slug'
     | '/docs/components/'
@@ -126,6 +138,7 @@ export interface RootRouteChildren {
   DocsRoute: typeof DocsRouteWithChildren
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  OgSplatRoute: typeof OgSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsPageRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/og/$': {
+      id: '/og/$'
+      path: '/og/$'
+      fullPath: '/og/$'
+      preLoaderRoute: typeof OgSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/docs/components/': {
       id: '/docs/components/'
       path: '/components'
@@ -210,6 +230,7 @@ const rootRouteChildren: RootRouteChildren = {
   DocsRoute: DocsRouteWithChildren,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  OgSplatRoute: OgSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
