@@ -286,6 +286,28 @@
       "docs": "import { KolamLoader } from '@/components/interlude/kolam-loader/kolam-loader';\n\n<KolamLoader status={status} label=\"Uploading files\" />"
     },
     {
+      "name": "floral-loader",
+      "type": "registry:component",
+      "title": "Floral",
+      "description": "A six-petal flower that opens one petal at a time, rests, and folds to a bud.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/floral-loader/floral-loader.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/floral-loader/floral-loader.tsx"
+        },
+        {
+          "path": "registry/components/interlude/floral-loader/petals.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/floral-loader/petals.ts"
+        }
+      ],
+      "categories": ["waiting"],
+      "docs": "import { FloralLoader } from '@/components/interlude/floral-loader/floral-loader';\n\n<FloralLoader status={status} label=\"Uploading files\" />"
+    },
+    {
       "name": "tetromino-loader",
       "type": "registry:component",
       "title": "Tetromino",

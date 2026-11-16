@@ -102,6 +102,7 @@ export const propsFor: Record<string, PropDoc[]> = {
   ],
   'pulse-loader': statusLoader,
   'kolam-loader': statusLoader,
+  'floral-loader': statusLoader,
   'tetromino-loader': statusLoader,
   'progress-loader': [
     {

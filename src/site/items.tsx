@@ -8,6 +8,7 @@ import {
   fallingBlocks,
   FallingBlocksLoader,
 } from '@registry/components/interlude/falling-blocks/falling-blocks';
+import { FloralLoader } from '@registry/components/interlude/floral-loader/floral-loader';
 import { KolamLoader } from '@registry/components/interlude/kolam-loader/kolam-loader';
 import {
   memoryMatch,
@@ -127,6 +128,15 @@ const runtime: Record<string, { Glyph: Glyph; playground: PlaygroundSpec }> = {
       default: 24,
       min: 16,
       max: 72,
+    }),
+  },
+  'floral-loader': {
+    Glyph: live(FloralLoader),
+    playground: statusLoaderSpec('FloralLoader', 'floral-loader', FloralLoader, {
+      initial: 36,
+      default: 20,
+      min: 12,
+      max: 64,
     }),
   },
   'tetromino-loader': {

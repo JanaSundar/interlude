@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vite-plus/test';
 import { DotMatrixLoader } from '../dot-matrix-loader/dot-matrix-loader';
+import { FloralLoader } from '../floral-loader/floral-loader';
 import { KolamLoader } from '../kolam-loader/kolam-loader';
 import { OrbitalLoader } from '../orbital-loader/orbital-loader';
 import { orbitPoint, ORBITS } from '../orbital-loader/orbits';
@@ -16,6 +17,7 @@ const loaders = {
   OrbitalLoader,
   PulseLoader,
   KolamLoader,
+  FloralLoader,
   TetrominoLoader,
   ProgressLoader,
 };

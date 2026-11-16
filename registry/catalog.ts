@@ -236,6 +236,19 @@ const indicators: CatalogEntry[] = [
       'The loops come from a pure function of the dot grid, and how much of each is drawn comes from one motion clock, outside React renders. Reduced motion shows the finished kolam.',
   },
   {
+    slug: 'floral-loader',
+    name: 'Floral',
+    group: 'Waiting',
+    component: 'FloralLoader',
+    tagline: 'Opens petal by petal',
+    description: 'A six-petal flower that opens one petal at a time, rests, and folds to a bud.',
+    base: PRIMITIVES_ITEM,
+    usage: loaderUsage('FloralLoader', 'floral-loader'),
+    a11y: loaderA11y,
+    motion:
+      'How open each petal is comes from a pure function of one motion clock, outside React renders. Reduced motion shows the open flower, still.',
+  },
+  {
     slug: 'tetromino-loader',
     name: 'Tetromino',
     group: 'Waiting',

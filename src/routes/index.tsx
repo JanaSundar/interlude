@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { DotMatrixLoader } from '@registry/components/interlude/dot-matrix-loader/dot-matrix-loader';
+import { FloralLoader } from '@registry/components/interlude/floral-loader/floral-loader';
 import { KolamLoader } from '@registry/components/interlude/kolam-loader/kolam-loader';
 import { OrbitalLoader } from '@registry/components/interlude/orbital-loader/orbital-loader';
 import { ProgressLoader } from '@registry/components/interlude/progress-loader/progress-loader';
@@ -21,6 +22,7 @@ const strip = [
   { name: 'orbital', node: <OrbitalLoader status="loading" size={26} /> },
   { name: 'pulse', node: <PulseLoader status="loading" size={26} /> },
   { name: 'kolam', node: <KolamLoader status="loading" size={30} /> },
+  { name: 'floral', node: <FloralLoader status="loading" size={28} /> },
   { name: 'tetromino', node: <TetrominoLoader status="loading" size={24} /> },
   { name: 'progress', node: <ProgressLoader status="loading" size={96} /> },
   { name: 'snake · click it', node: <SnakeLoader status="loading" size={22} /> },
