@@ -4,6 +4,7 @@ import { ripplePattern } from '@registry/components/interlude/dot-matrix-loader/
 import { patternDots } from './art';
 import { OG_DOCS, OG_HOME, ogNames } from './names';
 import { ogSpec } from './spec';
+import { isTemplate, templateFor, templates } from './templates';
 
 describe('ogSpec', () => {
   it('has a card for the home page, the docs and every component', () => {
@@ -22,6 +23,25 @@ describe('ogSpec', () => {
   it('has no card for an unknown name', () => {
     expect(ogSpec('nope')).toBeNull();
     expect(ogSpec('')).toBeNull();
+  });
+});
+
+describe('templateFor', () => {
+  const pick = (name: string) => templateFor(name, ogSpec(name)!);
+
+  it('gives each kind of page its own design', () => {
+    expect(pick(OG_HOME)).toBe('poster');
+    expect(pick(OG_DOCS)).toBe('terminal');
+    expect(pick('snake')).toBe('arcade');
+    expect(pick('agent-activity')).toBe('bento');
+    expect(pick('skeleton')).toBe('bento');
+  });
+
+  it('only picks designs that exist', () => {
+    for (const name of ogNames()) expect(isTemplate(pick(name)), name).toBe(true);
+    expect(Object.keys(templates)).toContain('classic');
+    expect(isTemplate('nope')).toBe(false);
+    expect(isTemplate('toString')).toBe(false);
   });
 });
 
