@@ -28,6 +28,9 @@ const strip = [
   { name: 'snake · click it', node: <SnakeLoader status="loading" size={22} /> },
 ];
 
+/** Four to a row, so the strip always fills whole rows. */
+const stripRows = [strip.slice(0, 4), strip.slice(4)];
+
 const principles = [
   [
     'Truthful state',
@@ -84,17 +87,19 @@ function Home() {
 
       <section aria-label="Loaders" className="relative dotted-t dotted-b">
         <div className="page">
-          <ul className="grid grid-cols-2 sm:grid-cols-5">
-            {strip.map((s) => (
-              <li
-                key={s.name}
-                className="relative flex h-36 flex-col justify-between px-4 py-4 last:col-span-2 sm:last:col-span-1 sm:not-first:dotted-l"
-              >
-                <span className="grid flex-1 place-items-center">{s.node}</span>
-                <span className="font-mono text-[11px] text-faint">{s.name}</span>
-              </li>
-            ))}
-          </ul>
+          {stripRows.map((row, i) => (
+            <ul key={i} className="relative grid grid-cols-2 not-first:dotted-t sm:grid-cols-4">
+              {row.map((s) => (
+                <li
+                  key={s.name}
+                  className="relative flex h-36 flex-col justify-between px-4 py-4 sm:not-first:dotted-l"
+                >
+                  <span className="grid flex-1 place-items-center">{s.node}</span>
+                  <span className="font-mono text-[11px] text-faint">{s.name}</span>
+                </li>
+              ))}
+            </ul>
+          ))}
         </div>
       </section>
 
