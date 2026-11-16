@@ -18,6 +18,10 @@ import { OG_DOCS, OG_HOME } from './names';
 /** What an Open Graph card shows. `art` is the dot animation frozen on one frame. */
 export type OgSpec = {
   eyebrow: string;
+  /** One word for the kind of page: the component's group, `Docs` or `Registry`. */
+  tag: string;
+  /** A few words about it, for designs with a spare corner. */
+  tagline?: string;
   title: string;
   /** A second, muted run of the title, like the site's headline. */
   muted?: string;
@@ -52,6 +56,8 @@ export function ogSpec(name: string): OgSpec | null {
   if (name === OG_HOME) {
     return {
       eyebrow: 'Open-source React registry',
+      tag: 'Registry',
+      tagline: 'Loaders with games inside',
       title: 'Components for the',
       muted: 'in-between.',
       description:
@@ -62,6 +68,8 @@ export function ogSpec(name: string): OgSpec | null {
   if (name === OG_DOCS) {
     return {
       eyebrow: 'Documentation',
+      tag: 'Docs',
+      tagline: 'Install, wire, restyle',
       title: 'Interlude',
       muted: 'docs.',
       description:
@@ -74,6 +82,8 @@ export function ogSpec(name: string): OgSpec | null {
   if (!entry) return null;
   return {
     eyebrow: `Component · ${entry.group}`,
+    tag: entry.group,
+    tagline: entry.tagline,
     title: entry.name,
     description: entry.description,
     command: installCommand(entry.slug),
