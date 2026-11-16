@@ -1,9 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { DotMatrixLoader } from '@registry/components/interlude/dot-matrix-loader/dot-matrix-loader';
+import { FloralLoader } from '@registry/components/interlude/floral-loader/floral-loader';
+import { WeaveLoader } from '@registry/components/interlude/weave-loader/weave-loader';
 import { OrbitalLoader } from '@registry/components/interlude/orbital-loader/orbital-loader';
 import { ProgressLoader } from '@registry/components/interlude/progress-loader/progress-loader';
 import { PulseLoader } from '@registry/components/interlude/pulse-loader/pulse-loader';
 import { SnakeLoader } from '@registry/components/interlude/snake/snake';
+import { TetrominoLoader } from '@registry/components/interlude/tetromino-loader/tetromino-loader';
 import { SectionLabel } from '@/site/chrome';
 import { ComponentCard } from '@/site/component-card';
 import { findItem, items } from '@/site/items';
@@ -18,9 +21,15 @@ const strip = [
   { name: 'dot matrix', node: <DotMatrixLoader status="loading" size={22} /> },
   { name: 'orbital', node: <OrbitalLoader status="loading" size={26} /> },
   { name: 'pulse', node: <PulseLoader status="loading" size={26} /> },
+  { name: 'weave', node: <WeaveLoader status="loading" size={30} /> },
+  { name: 'floral', node: <FloralLoader status="loading" size={28} /> },
+  { name: 'tetromino', node: <TetrominoLoader status="loading" size={24} /> },
   { name: 'progress', node: <ProgressLoader status="loading" size={96} /> },
   { name: 'snake · click it', node: <SnakeLoader status="loading" size={22} /> },
 ];
+
+/** Four to a row, so the strip always fills whole rows. */
+const stripRows = [strip.slice(0, 4), strip.slice(4)];
 
 const principles = [
   [
@@ -78,17 +87,19 @@ function Home() {
 
       <section aria-label="Loaders" className="relative dotted-t dotted-b">
         <div className="page">
-          <ul className="grid grid-cols-2 sm:grid-cols-5">
-            {strip.map((s) => (
-              <li
-                key={s.name}
-                className="relative flex h-36 flex-col justify-between px-4 py-4 last:col-span-2 sm:last:col-span-1 sm:not-first:dotted-l"
-              >
-                <span className="grid flex-1 place-items-center">{s.node}</span>
-                <span className="font-mono text-[11px] text-faint">{s.name}</span>
-              </li>
-            ))}
-          </ul>
+          {stripRows.map((row, i) => (
+            <ul key={i} className="relative grid grid-cols-2 not-first:dotted-t sm:grid-cols-4">
+              {row.map((s) => (
+                <li
+                  key={s.name}
+                  className="relative flex h-36 flex-col justify-between px-4 py-4 sm:not-first:dotted-l"
+                >
+                  <span className="grid flex-1 place-items-center">{s.node}</span>
+                  <span className="font-mono text-[11px] text-faint">{s.name}</span>
+                </li>
+              ))}
+            </ul>
+          ))}
         </div>
       </section>
 

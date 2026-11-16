@@ -8,6 +8,8 @@ import {
   fallingBlocks,
   FallingBlocksLoader,
 } from '@registry/components/interlude/falling-blocks/falling-blocks';
+import { FloralLoader } from '@registry/components/interlude/floral-loader/floral-loader';
+import { WeaveLoader } from '@registry/components/interlude/weave-loader/weave-loader';
 import {
   memoryMatch,
   MemoryMatchLoader,
@@ -33,6 +35,7 @@ import {
   spaceShooter,
   SpaceShooterLoader,
 } from '@registry/components/interlude/space-shooter/space-shooter';
+import { TetrominoLoader } from '@registry/components/interlude/tetromino-loader/tetromino-loader';
 import { thinkingPatterns } from '@registry/components/interlude/thinking-indicator/patterns';
 import {
   whackAMole,
@@ -112,6 +115,33 @@ const runtime: Record<string, { Glyph: Glyph; playground: PlaygroundSpec }> = {
   'pulse-loader': {
     Glyph: live(PulseLoader),
     playground: statusLoaderSpec('PulseLoader', 'pulse-loader', PulseLoader, {
+      initial: 28,
+      default: 18,
+      min: 12,
+      max: 56,
+    }),
+  },
+  'weave-loader': {
+    Glyph: live(WeaveLoader),
+    playground: statusLoaderSpec('WeaveLoader', 'weave-loader', WeaveLoader, {
+      initial: 40,
+      default: 24,
+      min: 16,
+      max: 72,
+    }),
+  },
+  'floral-loader': {
+    Glyph: live(FloralLoader),
+    playground: statusLoaderSpec('FloralLoader', 'floral-loader', FloralLoader, {
+      initial: 36,
+      default: 20,
+      min: 12,
+      max: 64,
+    }),
+  },
+  'tetromino-loader': {
+    Glyph: live(TetrominoLoader),
+    playground: statusLoaderSpec('TetrominoLoader', 'tetromino-loader', TetrominoLoader, {
       initial: 28,
       default: 18,
       min: 12,

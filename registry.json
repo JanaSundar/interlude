@@ -264,6 +264,72 @@
       "docs": "import { PulseLoader } from '@/components/interlude/pulse-loader/pulse-loader';\n\n<PulseLoader status={status} label=\"Uploading files\" />"
     },
     {
+      "name": "weave-loader",
+      "type": "registry:component",
+      "title": "Weave",
+      "description": "A weave drawn around a 3×3 grid of dots: three loops laid down in turn, then lifted.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/weave-loader/weave-loader.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/weave-loader/weave-loader.tsx"
+        },
+        {
+          "path": "registry/components/interlude/weave-loader/weave.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/weave-loader/weave.ts"
+        }
+      ],
+      "categories": ["waiting"],
+      "docs": "import { WeaveLoader } from '@/components/interlude/weave-loader/weave-loader';\n\n<WeaveLoader status={status} label=\"Uploading files\" />"
+    },
+    {
+      "name": "floral-loader",
+      "type": "registry:component",
+      "title": "Floral",
+      "description": "A six-petal flower that opens one petal at a time, rests, and folds to a bud.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/floral-loader/floral-loader.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/floral-loader/floral-loader.tsx"
+        },
+        {
+          "path": "registry/components/interlude/floral-loader/petals.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/floral-loader/petals.ts"
+        }
+      ],
+      "categories": ["waiting"],
+      "docs": "import { FloralLoader } from '@/components/interlude/floral-loader/floral-loader';\n\n<FloralLoader status={status} label=\"Uploading files\" />"
+    },
+    {
+      "name": "tetromino-loader",
+      "type": "registry:component",
+      "title": "Tetromino",
+      "description": "Four pieces fall a cell at a time into a 4×4 well, fill it exactly, and clear.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/tetromino-loader/pieces.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/tetromino-loader/pieces.ts"
+        },
+        {
+          "path": "registry/components/interlude/tetromino-loader/tetromino-loader.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/tetromino-loader/tetromino-loader.tsx"
+        }
+      ],
+      "categories": ["waiting"],
+      "docs": "import { TetrominoLoader } from '@/components/interlude/tetromino-loader/tetromino-loader';\n\n<TetrominoLoader status={status} label=\"Uploading files\" />"
+    },
+    {
       "name": "progress-loader",
       "type": "registry:component",
       "title": "Progress",
