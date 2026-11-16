@@ -1,9 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { DotMatrixLoader } from '@registry/components/interlude/dot-matrix-loader/dot-matrix-loader';
+import { FloralLoader } from '@registry/components/interlude/floral-loader/floral-loader';
+import { WeaveLoader } from '@registry/components/interlude/weave-loader/weave-loader';
 import { OrbitalLoader } from '@registry/components/interlude/orbital-loader/orbital-loader';
 import { ProgressLoader } from '@registry/components/interlude/progress-loader/progress-loader';
 import { PulseLoader } from '@registry/components/interlude/pulse-loader/pulse-loader';
 import { SnakeLoader } from '@registry/components/interlude/snake/snake';
+import { TetrominoLoader } from '@registry/components/interlude/tetromino-loader/tetromino-loader';
 import { SectionLabel } from '@/site/chrome';
 import { ComponentCard } from '@/site/component-card';
 import { findItem, items } from '@/site/items';
@@ -18,6 +21,9 @@ const strip = [
   { name: 'dot matrix', node: <DotMatrixLoader status="loading" size={22} /> },
   { name: 'orbital', node: <OrbitalLoader status="loading" size={26} /> },
   { name: 'pulse', node: <PulseLoader status="loading" size={26} /> },
+  { name: 'weave', node: <WeaveLoader status="loading" size={30} /> },
+  { name: 'floral', node: <FloralLoader status="loading" size={28} /> },
+  { name: 'tetromino', node: <TetrominoLoader status="loading" size={24} /> },
   { name: 'progress', node: <ProgressLoader status="loading" size={96} /> },
   { name: 'snake · click it', node: <SnakeLoader status="loading" size={22} /> },
 ];

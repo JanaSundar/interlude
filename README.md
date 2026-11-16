@@ -20,7 +20,7 @@ You need a project with a `components.json` (`shadcn init`) and [Motion](https:/
 
 | Group    | Components                                                                                                                      |
 | -------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| Waiting  | Dot Matrix, Orbital, Pulse, Progress, Skeleton                                                                                  |
+| Waiting  | Dot Matrix, Orbital, Pulse, Weave, Floral, Tetromino, Progress, Skeleton                                                        |
 | Status   | Thinking Indicator                                                                                                              |
 | Activity | Agent Activity, Tool Call                                                                                                       |
 | Output   | Sources, Streaming Markdown, Generative Card                                                                                    |
