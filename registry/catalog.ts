@@ -222,6 +222,33 @@ const indicators: CatalogEntry[] = [
       'Rings scale and fade on a staggered loop. Reduced motion removes the rings and shows a still core.',
   },
   {
+    slug: 'kolam-loader',
+    name: 'Kolam',
+    group: 'Waiting',
+    component: 'KolamLoader',
+    tagline: 'Lines looped around dots',
+    description:
+      'A kolam drawn around a 3×3 grid of dots: three loops laid down in turn, then lifted.',
+    base: PRIMITIVES_ITEM,
+    usage: loaderUsage('KolamLoader', 'kolam-loader'),
+    a11y: loaderA11y,
+    motion:
+      'The loops come from a pure function of the dot grid, and how much of each is drawn comes from one motion clock, outside React renders. Reduced motion shows the finished kolam.',
+  },
+  {
+    slug: 'tetromino-loader',
+    name: 'Tetromino',
+    group: 'Waiting',
+    component: 'TetrominoLoader',
+    tagline: 'Stack, fill, clear',
+    description: 'Four pieces fall a cell at a time into a 4×4 well, fill it exactly, and clear.',
+    base: PRIMITIVES_ITEM,
+    usage: loaderUsage('TetrominoLoader', 'tetromino-loader'),
+    a11y: loaderA11y,
+    motion:
+      'Each piece’s row and strength come from a pure function of one motion clock, outside React renders. Reduced motion shows the full well, still.',
+  },
+  {
     slug: 'progress-loader',
     name: 'Progress',
     group: 'Waiting',

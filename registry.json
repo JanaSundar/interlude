@@ -264,6 +264,50 @@
       "docs": "import { PulseLoader } from '@/components/interlude/pulse-loader/pulse-loader';\n\n<PulseLoader status={status} label=\"Uploading files\" />"
     },
     {
+      "name": "kolam-loader",
+      "type": "registry:component",
+      "title": "Kolam",
+      "description": "A kolam drawn around a 3×3 grid of dots: three loops laid down in turn, then lifted.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/kolam-loader/kolam-loader.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/kolam-loader/kolam-loader.tsx"
+        },
+        {
+          "path": "registry/components/interlude/kolam-loader/kolam.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/kolam-loader/kolam.ts"
+        }
+      ],
+      "categories": ["waiting"],
+      "docs": "import { KolamLoader } from '@/components/interlude/kolam-loader/kolam-loader';\n\n<KolamLoader status={status} label=\"Uploading files\" />"
+    },
+    {
+      "name": "tetromino-loader",
+      "type": "registry:component",
+      "title": "Tetromino",
+      "description": "Four pieces fall a cell at a time into a 4×4 well, fill it exactly, and clear.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/tetromino-loader/pieces.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/tetromino-loader/pieces.ts"
+        },
+        {
+          "path": "registry/components/interlude/tetromino-loader/tetromino-loader.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/tetromino-loader/tetromino-loader.tsx"
+        }
+      ],
+      "categories": ["waiting"],
+      "docs": "import { TetrominoLoader } from '@/components/interlude/tetromino-loader/tetromino-loader';\n\n<TetrominoLoader status={status} label=\"Uploading files\" />"
+    },
+    {
       "name": "progress-loader",
       "type": "registry:component",
       "title": "Progress",

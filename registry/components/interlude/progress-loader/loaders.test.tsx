@@ -1,15 +1,24 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vite-plus/test';
 import { DotMatrixLoader } from '../dot-matrix-loader/dot-matrix-loader';
+import { KolamLoader } from '../kolam-loader/kolam-loader';
 import { OrbitalLoader } from '../orbital-loader/orbital-loader';
 import { orbitPoint, ORBITS } from '../orbital-loader/orbits';
 import { PulseLoader } from '../pulse-loader/pulse-loader';
 import { SkeletonGroup, SkeletonText } from '../skeleton/skeleton';
+import { TetrominoLoader } from '../tetromino-loader/tetromino-loader';
 import { ThinkingIndicator } from '../thinking-indicator/thinking-indicator';
 import { SWEEP_PERIOD, sweepOffset, toFraction } from './progress';
 import { ProgressLoader } from './progress-loader';
 
-const loaders = { DotMatrixLoader, OrbitalLoader, PulseLoader, ProgressLoader };
+const loaders = {
+  DotMatrixLoader,
+  OrbitalLoader,
+  PulseLoader,
+  KolamLoader,
+  TetrominoLoader,
+  ProgressLoader,
+};
 
 describe.each(Object.entries(loaders))('%s lifecycle', (_, Loader) => {
   it('renders nothing while idle', () => {
