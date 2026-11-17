@@ -299,6 +299,43 @@ export const propsFor: Record<string, PropDoc[]> = {
     shared.reducedMotion,
     shared.className,
   ],
+  'og-templates': [
+    {
+      name: 'template',
+      type: "'poster' | 'terminal' | 'arcade' | 'bento'",
+      default: "'poster'",
+      description: 'OgCard only: which design to draw. Each is also exported on its own.',
+    },
+    { name: 'title', type: 'string', description: 'The headline. Shrinks to fit as it grows.' },
+    { name: 'muted', type: 'string', description: 'A second run of the title in another colour.' },
+    { name: 'description', type: 'string', description: 'Up to three lines under the title.' },
+    { name: 'eyebrow', type: 'string', description: 'A short line such as “Documentation”.' },
+    { name: 'tag', type: 'string', description: 'One word for the kind of page.' },
+    {
+      name: 'tagline',
+      type: 'string',
+      description: 'A few words, shown as a chip or corner tile.',
+    },
+    { name: 'command', type: 'string', description: 'A shell command, shown in monospace.' },
+    { name: 'brand', type: 'string', description: 'Your product name, next to the logo.' },
+    {
+      name: 'logo',
+      type: '(ink: string) => ReactNode',
+      description: 'Your logo, about 30px tall, in the ink colour the design passes in.',
+    },
+    {
+      name: 'art',
+      type: 'DotPattern',
+      description: 'A dot pattern frozen on one frame. Defaults to a diagonal ripple.',
+    },
+    { name: 'accent', type: 'string', default: "'#F0A35E'", description: 'Any CSS colour.' },
+    {
+      name: 'sans / mono',
+      type: 'string',
+      default: "'Inter Tight' / 'JetBrains Mono'",
+      description: 'Font family names, as registered with your renderer.',
+    },
+  ],
   'response-actions': [
     {
       name: 'actions',

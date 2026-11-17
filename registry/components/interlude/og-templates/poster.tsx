@@ -1,4 +1,14 @@
-import { ACCENT, DotArt, fit, H, Mark, MONO, SANS, W, type OgTemplate } from './shared';
+import {
+  Brand,
+  DotArt,
+  fit,
+  fonts,
+  headline,
+  OG_ACCENT,
+  OG_HEIGHT,
+  OG_WIDTH,
+  type OgTemplate,
+} from './shared';
 
 const PAPER = '#f1ede4';
 const INK = '#141518';
@@ -7,19 +17,21 @@ const PAD = 64;
 const DISC = 430;
 
 /** Editorial poster: warm paper, one oversized headline, a single orange disc. */
-export const Poster: OgTemplate = ({ spec }) => {
-  const headline = spec.muted ? `${spec.title} ${spec.muted}` : spec.title;
-  const size = fit(headline, 172, 11, 96);
+export const OgPoster: OgTemplate = (card) => {
+  const { sans, mono } = fonts(card);
+  const accent = card.accent ?? OG_ACCENT;
+  const size = fit(headline(card), 172, 11, 96);
   return (
     <div
       style={{
-        width: W,
-        height: H,
+        width: OG_WIDTH,
+        height: OG_HEIGHT,
         display: 'flex',
         position: 'relative',
+        overflow: 'hidden',
         background: PAPER,
         color: INK,
-        fontFamily: SANS,
+        fontFamily: sans,
       }}
     >
       <div
@@ -30,13 +42,13 @@ export const Poster: OgTemplate = ({ spec }) => {
           width: DISC,
           height: DISC,
           borderRadius: DISC / 2,
-          background: ACCENT,
+          background: accent,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
         }}
       >
-        <DotArt spec={spec} size={DISC * 0.6} color={INK} floor={0.1} />
+        <DotArt pattern={card.art} size={DISC * 0.6} color={INK} floor={0.1} />
       </div>
 
       <div
@@ -46,12 +58,9 @@ export const Poster: OgTemplate = ({ spec }) => {
           right: PAD,
           top: 52,
           display: 'flex',
-          alignItems: 'center',
-          gap: 14,
         }}
       >
-        <Mark ink={INK} signal={INK} height={30} />
-        <div style={{ fontSize: 28, fontWeight: 600, letterSpacing: -0.6 }}>interlude</div>
+        <Brand card={card} ink={INK} />
       </div>
 
       <div
@@ -65,20 +74,24 @@ export const Poster: OgTemplate = ({ spec }) => {
           gap: 18,
         }}
       >
-        <div
-          style={{
-            fontFamily: MONO,
-            fontSize: 17,
-            letterSpacing: 2.4,
-            textTransform: 'uppercase',
-          }}
-        >
-          {spec.eyebrow}
-        </div>
+        {card.eyebrow && (
+          <div
+            style={{
+              fontFamily: mono,
+              fontSize: 17,
+              letterSpacing: 2.4,
+              textTransform: 'uppercase',
+            }}
+          >
+            {card.eyebrow}
+          </div>
+        )}
         <div style={{ width: 72, height: 6, background: INK }} />
-        <div style={{ fontSize: 27, lineHeight: 1.32, color: SOFT, lineClamp: 3 }}>
-          {spec.description}
-        </div>
+        {card.description && (
+          <div style={{ fontSize: 27, lineHeight: 1.32, color: SOFT, lineClamp: 3 }}>
+            {card.description}
+          </div>
+        )}
       </div>
 
       <div
@@ -97,8 +110,8 @@ export const Poster: OgTemplate = ({ spec }) => {
           letterSpacing: -size * 0.055,
         }}
       >
-        <span>{spec.title}</span>
-        {spec.muted && <span style={{ color: '#c9682a' }}>{spec.muted}</span>}
+        <span>{card.title}</span>
+        {card.muted && <span style={{ color: accent }}>{card.muted}</span>}
       </div>
 
       <div
@@ -108,21 +121,23 @@ export const Poster: OgTemplate = ({ spec }) => {
           right: 0,
           bottom: 0,
           height: 68,
+          boxSizing: 'border-box',
+          whiteSpace: 'nowrap',
           padding: `0 ${PAD}px`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           background: INK,
           color: PAPER,
-          fontFamily: MONO,
+          fontFamily: mono,
           fontSize: 19,
         }}
       >
         <div style={{ display: 'flex', gap: 12 }}>
-          <span style={{ color: ACCENT }}>$</span>
-          <span>{spec.command}</span>
+          {card.command && <span style={{ color: accent }}>$</span>}
+          <span>{card.command}</span>
         </div>
-        <span style={{ color: 'rgba(241,237,228,0.55)', letterSpacing: 2 }}>{spec.tag}</span>
+        <span style={{ color: 'rgba(241,237,228,0.55)', letterSpacing: 2 }}>{card.tag}</span>
       </div>
     </div>
   );

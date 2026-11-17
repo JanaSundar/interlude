@@ -26,7 +26,7 @@ try {
   const { ogNames } = await server.ssrLoadModule('/src/site/og/names.ts');
   const { ogSpec } = await server.ssrLoadModule('/src/site/og/spec.ts');
   const { renderOg } = await server.ssrLoadModule('/src/site/og/render.tsx');
-  const { templateFor } = await server.ssrLoadModule('/src/site/og/templates/index.ts');
+  const { templateFor } = await server.ssrLoadModule('/src/site/og/templates/index.tsx');
 
   await mkdir(out, { recursive: true });
   const names: string[] = ogNames();

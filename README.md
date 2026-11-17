@@ -25,6 +25,7 @@ You need a project with a `components.json` (`shadcn init`) and [Motion](https:/
 | Activity | Agent Activity, Tool Call                                                                                                       |
 | Output   | Sources, Streaming Markdown, Generative Card                                                                                    |
 | Actions  | Approval Gate, Response Actions                                                                                                 |
+| Sharing  | OG Templates                                                                                                                    |
 | Playable | Snake, Falling Blocks, Pong, Breakout, 2048, Memory Match, Whack-a-Mole, Space Shooter, Sliding Puzzle, Dino Run, Reaction Test |
 
 The playable loaders look like quiet dot matrices until someone clicks one. The game is a guest: it stops the moment your task ends, input is disabled, and focus moves to the result. Score never feeds into task progress.

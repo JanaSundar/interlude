@@ -540,6 +540,53 @@
       "docs": "import { ResponseActions } from '@/components/interlude/response-actions/response-actions';\n\n<ResponseActions actions={['copy', 'regenerate', 'edit']} copyText={answer} onAction={handle} />"
     },
     {
+      "name": "og-templates",
+      "type": "registry:component",
+      "title": "OG Templates",
+      "description": "Open Graph images in four designs: poster, terminal, arcade and bento. Plain JSX for Takumi or any JSX image renderer.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["JanaSundar/interlude/interlude-primitives"],
+      "files": [
+        {
+          "path": "registry/components/interlude/og-templates/arcade.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/og-templates/arcade.tsx"
+        },
+        {
+          "path": "registry/components/interlude/og-templates/bento.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/og-templates/bento.tsx"
+        },
+        {
+          "path": "registry/components/interlude/og-templates/dots.ts",
+          "type": "registry:component",
+          "target": "@components/interlude/og-templates/dots.ts"
+        },
+        {
+          "path": "registry/components/interlude/og-templates/og-templates.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/og-templates/og-templates.tsx"
+        },
+        {
+          "path": "registry/components/interlude/og-templates/poster.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/og-templates/poster.tsx"
+        },
+        {
+          "path": "registry/components/interlude/og-templates/shared.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/og-templates/shared.tsx"
+        },
+        {
+          "path": "registry/components/interlude/og-templates/terminal.tsx",
+          "type": "registry:component",
+          "target": "@components/interlude/og-templates/terminal.tsx"
+        }
+      ],
+      "categories": ["sharing"],
+      "docs": "import { ImageResponse } from 'takumi-js/response';\nimport { OgCard } from '@/components/interlude/og-templates/og-templates';\n\n// A route that answers with a 1200×630 PNG. Load Inter Tight and JetBrains\n// Mono into `fonts`, or name your own with the sans and mono props.\nexport const GET = () =>\n  new ImageResponse(\n    <OgCard\n      template=\"bento\"\n      brand=\"Acme\"\n      title=\"Pricing\"\n      description=\"Simple plans for every team.\"\n      tag=\"Plans\"\n    />,\n    { width: 1200, height: 630, format: 'png', fonts },\n  );"
+    },
+    {
       "name": "snake",
       "type": "registry:component",
       "title": "Snake",

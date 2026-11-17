@@ -1,6 +1,6 @@
 import { ACCENT, mark } from '../../logo';
 import { OG_SIZE } from '../../meta';
-import { patternDots } from '../art';
+import { patternDots } from '@registry/components/interlude/og-templates/dots';
 import type { OgSpec } from '../spec';
 
 const { width: OG_WIDTH, height: OG_HEIGHT } = OG_SIZE;
