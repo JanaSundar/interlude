@@ -4,7 +4,14 @@
  * targets can't drift apart.
  */
 /** What a component is for. One axis: loaders are AI-interface components too. */
-export type Group = 'Waiting' | 'Status' | 'Activity' | 'Output' | 'Actions' | 'Playable';
+export type Group =
+  | 'Waiting'
+  | 'Status'
+  | 'Activity'
+  | 'Output'
+  | 'Actions'
+  | 'Sharing'
+  | 'Playable';
 export type Genre = 'arcade' | 'puzzle' | 'reflex';
 
 export type CatalogEntry = {
@@ -471,7 +478,43 @@ const ai: CatalogEntry[] = [
   },
 ];
 
-export const catalog: CatalogEntry[] = [...indicators, ...ai, ...games];
+const sharing: CatalogEntry[] = [
+  {
+    slug: 'og-templates',
+    name: 'OG Templates',
+    group: 'Sharing',
+    component: 'OgCard',
+    tagline: 'Four link-preview cards',
+    description:
+      'Open Graph images in four designs: poster, terminal, arcade and bento. Plain JSX for Takumi or any JSX image renderer.',
+    base: PRIMITIVES_ITEM,
+    usage: `import { ImageResponse } from 'takumi-js/response';
+import { OgCard } from '${importFrom('og-templates')}';
+
+// A route that answers with a 1200×630 PNG. Load Inter Tight and JetBrains
+// Mono into \`fonts\`, or name your own with the sans and mono props.
+export const GET = () =>
+  new ImageResponse(
+    <OgCard
+      template="bento"
+      brand="Acme"
+      title="Pricing"
+      description="Simple plans for every team."
+      tag="Plans"
+    />,
+    { width: 1200, height: 630, format: 'png', fonts },
+  );`,
+    a11y: [
+      'An image carries no text for assistive tech: set og:image:alt to the title and description you drew.',
+      'Body text keeps at least 4.5:1 contrast in every design. Arcade puts dark ink on your accent, so pick a light one.',
+      'Titles shrink as they grow and descriptions clamp at three lines, so nothing runs off the card.',
+    ],
+    motion:
+      'None. A card is one still frame; a dot pattern passed as art is frozen at a fixed phase. No hooks or effects, so it renders the same on a server and in a browser.',
+  },
+];
+
+export const catalog: CatalogEntry[] = [...indicators, ...ai, ...sharing, ...games];
 
 /** Display order and one-line purpose of each group. */
 export const groups: { id: Group; blurb: string }[] = [
@@ -480,6 +523,7 @@ export const groups: { id: Group; blurb: string }[] = [
   { id: 'Activity', blurb: 'Steps and tool calls an agent reported.' },
   { id: 'Output', blurb: 'Answers, sources and structured results.' },
   { id: 'Actions', blurb: 'Decisions and follow-ups for people.' },
+  { id: 'Sharing', blurb: 'Link-preview cards for your pages.' },
   { id: 'Playable', blurb: 'Loaders with a game inside.' },
 ];
 

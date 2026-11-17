@@ -1,7 +1,7 @@
-import { ACCENT, mark } from '../logo';
-import { OG_SIZE } from '../meta';
-import { patternDots } from './art';
-import type { OgSpec } from './spec';
+import { ACCENT, mark } from '../../logo';
+import { OG_SIZE } from '../../meta';
+import { patternDots } from '@registry/components/interlude/og-templates/dots';
+import type { OgSpec } from '../spec';
 
 const { width: OG_WIDTH, height: OG_HEIGHT } = OG_SIZE;
 
@@ -77,8 +77,8 @@ function Art({ spec }: { spec: OgSpec & { art: NonNullable<OgSpec['art']> } }) {
   );
 }
 
-/** Pure: the Open Graph card for a spec. Flex-only layout, which is what Takumi renders. */
-export function OgCard({ spec }: { spec: OgSpec }) {
+/** The original card: dark, dotted frame, dot art in a panel. */
+export function Classic({ spec }: { spec: OgSpec }) {
   const textWidth = spec.art ? 640 : 1000;
   const titleSize = spec.art ? 84 : 96;
   return (

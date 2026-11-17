@@ -1,4 +1,4 @@
-import type { DotPattern } from '@registry/components/interlude/primitives/dot-matrix';
+import type { DotPattern } from '../primitives/dot-matrix';
 
 export type ArtDot = { x: number; y: number; r: number; o: number };
 

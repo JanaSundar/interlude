@@ -42,6 +42,7 @@ import {
   WhackAMoleLoader,
 } from '@registry/components/interlude/whack-a-mole/whack-a-mole';
 import { activitySpec, approvalSpec, thinkingSpec, toolCallSpec } from './playground/ai-specs';
+import { ogSpec } from './playground/og-specs';
 import { gameSpec, progressSpec, skeletonSpec, statusLoaderSpec } from './playground/loader-specs';
 import { actionsSpec, cardSpec, markdownSpec, sourcesSpec } from './playground/output-specs';
 import type { PlaygroundSpec } from './playground/playground';
@@ -163,6 +164,7 @@ const runtime: Record<string, { Glyph: Glyph; playground: PlaygroundSpec }> = {
   'streaming-markdown': { Glyph: matrix(thinkingPatterns.streaming), playground: markdownSpec },
   'generative-card': { Glyph: icon('file'), playground: cardSpec },
   'response-actions': { Glyph: icon('copy'), playground: actionsSpec },
+  'og-templates': { Glyph: icon('external'), playground: ogSpec },
   ...Object.fromEntries(
     Object.entries(games).map(([slug, { definition, Loader }]) => {
       const component = catalog.find((e) => e.slug === slug)!.component;

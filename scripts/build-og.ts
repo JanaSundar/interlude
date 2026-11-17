@@ -26,11 +26,13 @@ try {
   const { ogNames } = await server.ssrLoadModule('/src/site/og/names.ts');
   const { ogSpec } = await server.ssrLoadModule('/src/site/og/spec.ts');
   const { renderOg } = await server.ssrLoadModule('/src/site/og/render.tsx');
+  const { templateFor } = await server.ssrLoadModule('/src/site/og/templates/index.tsx');
 
   await mkdir(out, { recursive: true });
   const names: string[] = ogNames();
   for (const name of names) {
-    const image = renderOg(ogSpec(name));
+    const spec = ogSpec(name);
+    const image = renderOg(spec, templateFor(name, spec));
     await writeFile(join(out, `${name}.png`), Buffer.from(await image.arrayBuffer()));
   }
   console.log(`og: wrote ${names.length} cards to dist/client/og`);
